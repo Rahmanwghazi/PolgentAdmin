@@ -1,6 +1,8 @@
 import RectangleCard from "../../components/rectangle-card/RectangleCard"
 import Sidebar from "../../components/sidebar/Sidebar"
 import './Users.css'
+import addButton from '../../assets/addbutton.png'
+
 const Users = () => {
     return (
         <div className="container mt-5">
@@ -10,15 +12,18 @@ const Users = () => {
                 </div>
                 <div className="col-md-9">
                     <div className="title-page row">
-                        <div className="col">
+                        <div className="col-2">
                             <p>Users</p>
+                        </div>
+                        <div className="col-2">
+                            <img src={addButton} alt="illustration" width="20" style={{ marginLeft: 35 }} />
                         </div>
                     </div>
                     <div className="row">
-                            <RectangleCard />
+                        <RectangleCard />
                     </div>
                     <div className="row">
-                            <RectangleCard />
+                        <RectangleCard />
                     </div>
                 </div>
             </div>
