@@ -1,11 +1,18 @@
 import './Card.css'
 
-const Card = () => {
+const Card = (props) => {
     return (
-        <div className="text-white mb-3">
+        <div className="mb-3">
             <div className="card-body mycard">
-                <h5 className="card-title text-center">(card tite)</h5>
-                <p className="card-text text-center">[card content]</p>
+                <div className='col'>
+                    <img src={props.img} alt="illustration" width="200" style={{ marginLeft: 35 }} />
+                </div>
+                <div className='col'>
+                    <p className="card-text-desc text-center">{props.desc}</p>
+                </div>
+                <div className='col'>
+                    <p className="card-text-point text-center">{props.point} points</p>
+                </div>
             </div>
         </div>
     )
