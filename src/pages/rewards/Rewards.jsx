@@ -6,6 +6,7 @@ import emoney from '../../assets/emoney.png'
 import telkomsel from '../../assets/telkomsel.jpg'
 import indosat from '../../assets/indosat.png'
 import smartfren from '../../assets/smartfren.jpg'
+import { AddRewardModal } from "../../components/modals/AddRewardModal"
 const Rewards = () => {
     return (
         <div className="container mt-5">
@@ -19,7 +20,8 @@ const Rewards = () => {
                             <p>Rewards</p>
                         </div>
                         <div className="col-2">
-                            <img src={addButton} alt="illustration" width="20" style={{ marginLeft: 35 }} />
+                            <img src={addButton} alt="illustration" width="20" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target="#modalFormName" />
+                            <AddRewardModal />
                         </div>
                     </div>
                     <div className="row">

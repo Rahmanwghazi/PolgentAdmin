@@ -8,6 +8,7 @@ import ip12pro from '../../assets/ip12pro.jpg'
 import ip12promax from '../../assets/ip12promax.jpg'
 import ip13mini from '../../assets/ip13mini.jpg'
 import ip13 from '../../assets/ip13.jpg'
+import { AddProductModal } from "../../components/modals/AddProductModal"
 
 const Products = () => {
     return (
@@ -22,7 +23,8 @@ const Products = () => {
                             <p>Products</p>
                         </div>
                         <div className="col-2">
-                            <img src={addButton} alt="illustration" width="20" style={{ marginLeft: 35 }} />
+                            <img src={addButton} alt="illustration" width="20" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target="#modalFormName" />
+                            <AddProductModal />
                         </div>
                     </div>
                     <div className="row">

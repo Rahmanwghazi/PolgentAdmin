@@ -2,6 +2,7 @@ import RectangleCard from "../../components/rectangle-card/RectangleCard"
 import Sidebar from "../../components/sidebar/Sidebar"
 import './Users.css'
 import addButton from '../../assets/addbutton.png'
+import { AddUserModal } from "../../components/modals/AddUserModal"
 
 const Users = () => {
     return (
@@ -16,7 +17,8 @@ const Users = () => {
                             <p>Users</p>
                         </div>
                         <div className="col-2">
-                            <img src={addButton} alt="illustration" width="20" style={{ marginLeft: 35 }} />
+                            <img src={addButton} alt="illustration" width="20" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target="#modalFormName" />
+                            <AddUserModal />
                         </div>
                     </div>
                     <div className="row">

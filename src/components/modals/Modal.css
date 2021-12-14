@@ -1,0 +1,55 @@
+.modal-content{
+    border-radius: 15px;
+}
+
+.form-group{
+    color: black;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.logo-modal{
+    margin-top: 25px;
+    text-align: center;
+}
+
+.label-modal{
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+}
+
+.text-modal{
+    color: black;
+    font-weight: 200;
+}
+
+.form-modal{
+    margin-top: 70px;
+}
+
+.btn-signin {
+    background-color: #FD7014;
+    color: black;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    width: 100%;
+    height: 50px;
+    margin-top: 50px;
+    margin-bottom: 35PX;
+}
+
+.btn-e {
+    background-color: #FF872E;
+    color: black;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    width: 100%;
+    height: 50px;
+    margin-top: 40px!important;
+
+}
