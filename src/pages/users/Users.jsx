@@ -3,8 +3,29 @@ import Sidebar from "../../components/sidebar/Sidebar"
 import './Users.css'
 import addButton from '../../assets/addbutton.png'
 import { AddUserModal } from "../../components/modals/AddUserModal"
+import axios from "axios"
+import { useEffect, useState } from "react"
 
 const Users = () => {
+
+    const [usersData, setUsersData] = useState([])
+    const [error, setError] = useState("");
+
+    const apiUrl = "https://61d6b4d235f71e0017c2e77e.mockapi.io/users"
+
+    useEffect(() => {
+        const handleFetchData = async () => {
+            try {
+                const data = await axios.get(apiUrl);
+                setUsersData(data.data);
+            } catch (error) {
+                setError(error);
+            }
+        }
+        handleFetchData();
+    }, []);
+
+    console.log("usersData", usersData)
     return (
         <div className="container mt-5">
             <div className="row">
@@ -21,12 +42,14 @@ const Users = () => {
                             <AddUserModal />
                         </div>
                     </div>
-                    <div className="row">
-                        <RectangleCard type = {"user"}/>
-                    </div>
-                    <div className="row">
-                        <RectangleCard type = {"user"}/>
-                    </div>
+
+                    {
+                        Object.values(usersData).map(item => (
+                            <div className="row">
+                                <RectangleCard type={"user"} data={item} />
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
         </div>
