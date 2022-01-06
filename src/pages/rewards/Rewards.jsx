@@ -26,22 +26,22 @@ const Rewards = () => {
                     </div>
                     <div className="row">
                         <div className="col-md-4">
-                            <Card img={emoney} desc={"20.000"} point={-5} />
+                            <Card img={emoney} desc={"20.000"} point={-5} type={"rewards"} />
                         </div>
                         <div className="col-md-4">
-                            <Card img={emoney} desc={"50.000"} point={-10} />
+                            <Card img={emoney} desc={"50.000"} point={-10} type={"rewards"} />
                         </div>
                         <div className="col-md-4">
-                            <Card img={emoney} desc={"100.000"} point={-13} />
+                            <Card img={emoney} desc={"100.000"} point={-13} type={"rewards"} />
                         </div>
                         <div className="col-md-4">
-                            <Card img={telkomsel} desc={"20.000"} point={-5} />
+                            <Card img={telkomsel} desc={"20.000"} point={-5} type={"rewards"} />
                         </div>
                         <div className="col-md-4">
-                            <Card img={indosat} desc={"50.000"} point={-10} />
+                            <Card img={indosat} desc={"50.000"} point={-10} type={"rewards"} />
                         </div>
                         <div className="col-md-4">
-                            <Card img={smartfren} desc={"100.000"} point={-13} />
+                            <Card img={smartfren} desc={"100.000"} point={-13} type={"rewards"} />
                         </div>
                     </div>
                 </div>

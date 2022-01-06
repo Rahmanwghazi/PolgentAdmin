@@ -29,22 +29,22 @@ const Products = () => {
                     </div>
                     <div className="row">
                         <div className="col-md-4">
-                            <Card img={ip13mini} desc={"iPhone 13 mini"} point={"+10"} />
+                            <Card img={ip13mini} desc={"iPhone 13 mini"} point={"+10"} type={"products"}/>
                         </div>
                         <div className="col-md-4">
-                            <Card img={ip13} desc={"iPhone 13"} point={"+12"} />
+                            <Card img={ip13} desc={"iPhone 13"} point={"+12"} type={"products"}/>
                         </div>
                         <div className="col-md-4">
-                            <Card img={ip12pro} desc={"iPhone 12 Pro"} point={"+15"} />
+                            <Card img={ip12pro} desc={"iPhone 12 Pro"} point={"+15"} type={"products"} />
                         </div>
                         <div className="col-md-4">
-                            <Card img={ip12promax} desc={"iPhone 12 Pro Max"} point={"+18"} />
+                            <Card img={ip12promax} desc={"iPhone 12 Pro Max"} point={"+18"} type={"products"} />
                         </div>
                         <div className="col-md-4">
-                            <Card img={ip12pro} desc={"other iPhone"} point={"+12"} />
+                            <Card img={ip12pro} desc={"other iPhone"} point={"+12"} type={"products"} />
                         </div>
                         <div className="col-md-4">
-                            <Card img={ip12pro} desc={"iPhone too"} point={"+10"} />
+                            <Card img={ip12pro} desc={"iPhone too"} point={"+10"} type={"products"} />
                         </div>
                     </div>
                 </div>

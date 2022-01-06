@@ -15,7 +15,40 @@
     font-size: 25px;
     font-weight: bolder;
 }
+
 .card-text-point{
     color: black;
     font-size: 20px;
+}
+
+.onHover{
+    margin-top: -300px;
+	position:relative;
+    width: 200px;
+    height: 200px;
+}
+
+.editHover{
+	position: absolute;
+    z-index: 2;
+    top: 44px;
+    display: none;
+    left: 59px;	
+    margin-top: 70px;
+}
+
+.deleteHover{
+	position: absolute;
+    top: 44px;
+    display: none;
+    left: 79px;	
+    margin-top: 70px;
+}
+
+.onHover:hover .editHover{ 
+	display:block;
+}
+
+.onHover:hover .deleteHover{ 
+	display:block;
 }

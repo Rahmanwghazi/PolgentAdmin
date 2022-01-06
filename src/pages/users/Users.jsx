@@ -22,10 +22,10 @@ const Users = () => {
                         </div>
                     </div>
                     <div className="row">
-                        <RectangleCard />
+                        <RectangleCard type = {"user"}/>
                     </div>
                     <div className="row">
-                        <RectangleCard />
+                        <RectangleCard type = {"user"}/>
                     </div>
                 </div>
             </div>
