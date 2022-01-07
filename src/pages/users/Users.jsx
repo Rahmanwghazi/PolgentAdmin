@@ -9,17 +9,14 @@ import { useEffect, useState } from "react"
 const Users = () => {
 
     const [usersData, setUsersData] = useState([])
-    const [error, setError] = useState("");
-
     const apiUrl = "https://61d6b4d235f71e0017c2e77e.mockapi.io/users"
-
     useEffect(() => {
         const handleFetchData = async () => {
             try {
                 const data = await axios.get(apiUrl);
                 setUsersData(data.data);
-            } catch (error) {
-                setError(error);
+            } catch (err) {
+                setUsersData(err.response?.data || err);
             }
         }
         handleFetchData();

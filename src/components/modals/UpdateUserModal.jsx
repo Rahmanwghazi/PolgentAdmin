@@ -1,8 +1,8 @@
 import { useState } from "react";
 import './Modal.css'
 
-export const UpdateUserModal = () => {
-    const [state, setState] = useState("")
+export const UpdateUserModal = (props) => {
+    const [state, setState] = useState(props.data)
     const onChange = e => {
         setState({
             ...state,
@@ -20,7 +20,7 @@ export const UpdateUserModal = () => {
     }
 
     return (
-        <div className="modal fade mt-5" id="modalUser" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade mt-5" id={`modalUser${props.data.id}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-body">

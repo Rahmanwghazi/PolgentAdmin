@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import './Modal.css'
 
@@ -18,6 +19,11 @@ export const AddRewardModal = () => {
             name: "",
             img: "",
             point: "",
+        })
+        axios.post(`https://61d6b4d235f71e0017c2e77e.mockapi.io/rewards`, {state})
+        .then(res => {
+            console.log(res)
+            console.log(res.data)
         })
     }
 

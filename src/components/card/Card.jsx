@@ -6,17 +6,18 @@ import { UpdateRewardModal } from '../modals/UpdateRewardModal'
 import { ConfirmDeleteModal } from '../modals/ConfirmDeleteModal'
 
 const Card = (props) => {
+    console.log("props", props)
     return (
         <div className="mb-3">
             <div className="card-body mycard">
                 <div className='col'>
-                    <img src={props.img} alt="illustration" width="200" style={{ marginLeft: 35 }} />
+                    <img src={props.data.image} alt="illustration" width="220" style={{ marginLeft: 35 }} />
                 </div>
                 <div className='col'>
-                    <p className="card-text-desc text-center">{props.desc}</p>
+                    <p className="card-text-desc text-center">{props.data.name}</p>
                 </div>
                 <div className='col'>
-                    <p className="card-text-point text-center">{props.point} points</p>
+                    <p className="card-text-point text-center">{props.data.point} points</p>
                 </div>
                 <div className="container">
                     <div className="row">

@@ -1,16 +1,27 @@
 import Card from "../../components/card/Card"
 import Sidebar from "../../components/sidebar/Sidebar"
 import './Products.css'
-
 import addButton from '../../assets/addbutton.png'
-
-import ip12pro from '../../assets/ip12pro.jpg'
-import ip12promax from '../../assets/ip12promax.jpg'
-import ip13mini from '../../assets/ip13mini.jpg'
-import ip13 from '../../assets/ip13.jpg'
 import { AddProductModal } from "../../components/modals/AddProductModal"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 const Products = () => {
+    const [productsData, setProductsData] = useState([])
+
+    const apiUrl = "https://61d6b4d235f71e0017c2e77e.mockapi.io/products"
+
+    useEffect(() => {
+        const handleFetchData = async () => {
+            try {
+                const data = await axios.get(apiUrl);
+                setProductsData(data.data);
+            } catch (err) {
+                setProductsData(err.response?.data || err);
+            }
+        }
+        handleFetchData();
+    }, []);
     return (
         <div className="container mt-5">
             <div className="row">
@@ -28,24 +39,13 @@ const Products = () => {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-4">
-                            <Card img={ip13mini} desc={"iPhone 13 mini"} point={"+10"} type={"products"}/>
-                        </div>
-                        <div className="col-md-4">
-                            <Card img={ip13} desc={"iPhone 13"} point={"+12"} type={"products"}/>
-                        </div>
-                        <div className="col-md-4">
-                            <Card img={ip12pro} desc={"iPhone 12 Pro"} point={"+15"} type={"products"} />
-                        </div>
-                        <div className="col-md-4">
-                            <Card img={ip12promax} desc={"iPhone 12 Pro Max"} point={"+18"} type={"products"} />
-                        </div>
-                        <div className="col-md-4">
-                            <Card img={ip12pro} desc={"other iPhone"} point={"+12"} type={"products"} />
-                        </div>
-                        <div className="col-md-4">
-                            <Card img={ip12pro} desc={"iPhone too"} point={"+10"} type={"products"} />
-                        </div>
+                    {
+                        Object.values(productsData).map(item => (
+                            <div className="col-md-4">
+                                <Card type={"user"} data={item} />
+                            </div>
+                        ))
+                    }
                     </div>
                 </div>
             </div>

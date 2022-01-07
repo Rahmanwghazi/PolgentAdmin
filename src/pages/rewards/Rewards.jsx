@@ -2,12 +2,25 @@ import Card from "../../components/card/Card"
 import Sidebar from "../../components/sidebar/Sidebar"
 import './Rewards.css'
 import addButton from '../../assets/addbutton.png'
-import emoney from '../../assets/emoney.png'
-import telkomsel from '../../assets/telkomsel.jpg'
-import indosat from '../../assets/indosat.png'
-import smartfren from '../../assets/smartfren.jpg'
 import { AddRewardModal } from "../../components/modals/AddRewardModal"
+import { useEffect, useState } from "react"
+import axios from "axios"
 const Rewards = () => {
+    const [rewardsData, setRewardsData] = useState([])
+
+    const apiUrl = "https://61d6b4d235f71e0017c2e77e.mockapi.io/rewards"
+
+    useEffect(() => {
+        const handleFetchData = async () => {
+            try {
+                const data = await axios.get(apiUrl);
+                setRewardsData(data.data);
+            } catch (err) {
+                setRewardsData(err.response?.data || err);
+            }
+        }
+        handleFetchData();
+    }, []);
     return (
         <div className="container mt-5">
             <div className="row">
@@ -25,24 +38,13 @@ const Rewards = () => {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-4">
-                            <Card img={emoney} desc={"20.000"} point={-5} type={"rewards"} />
-                        </div>
-                        <div className="col-md-4">
-                            <Card img={emoney} desc={"50.000"} point={-10} type={"rewards"} />
-                        </div>
-                        <div className="col-md-4">
-                            <Card img={emoney} desc={"100.000"} point={-13} type={"rewards"} />
-                        </div>
-                        <div className="col-md-4">
-                            <Card img={telkomsel} desc={"20.000"} point={-5} type={"rewards"} />
-                        </div>
-                        <div className="col-md-4">
-                            <Card img={indosat} desc={"50.000"} point={-10} type={"rewards"} />
-                        </div>
-                        <div className="col-md-4">
-                            <Card img={smartfren} desc={"100.000"} point={-13} type={"rewards"} />
-                        </div>
+                    {
+                        Object.values(rewardsData).map(item => (
+                            <div className="col-md-4">
+                                <Card type={"user"} data={item} />
+                            </div>
+                        ))
+                    }
                     </div>
                 </div>
             </div>

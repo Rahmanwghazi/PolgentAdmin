@@ -24,8 +24,8 @@ const RectangleCard = (props) => {
                                 </div>
                                 <div className="col-1">
                                     <>
-                                        <img src={editButton} alt="illustration" width="20" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target="#modalUser" />
-                                        <UpdateUserModal />
+                                        <img src={editButton} alt="illustration" width="20" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target={`#modalUser${props.data.id}`} />
+                                        <UpdateUserModal data={props.data}/>
                                         <img src={deleteButton} alt="illustration" width="20" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target="#modalDelete" />
                                         <ConfirmDeleteModal />
                                     </>

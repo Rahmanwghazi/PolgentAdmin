@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import './Modal.css'
 
@@ -18,7 +19,14 @@ export const AddUserModal = () => {
             handphone: "",
             address: ""
         })
+
+        axios.post(`https://61d6b4d235f71e0017c2e77e.mockapi.io/users`, {state})
+        .then(res => {
+            console.log(res)
+            console.log(res.data)
+        })
     }
+    console.log("state", state)
 
     return (
         <div className="modal fade mt-5" id="modalFormName" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
