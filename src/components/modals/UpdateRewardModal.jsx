@@ -1,8 +1,9 @@
+import axios from "axios";
 import { useState } from "react";
 import './Modal.css'
 
-export const UpdateRewardModal = () => {
-    const [state, setState] = useState("")
+export const UpdateRewardModal = (props) => {
+    const [state, setState] = useState(props.data)
     const onChange = e => {
         setState({
             ...state,
@@ -19,32 +20,36 @@ export const UpdateRewardModal = () => {
             img: "",
             point: "",
         })
+        axios.put(`https://61d6b4d235f71e0017c2e77e.mockapi.io/rewards/${props.data.id}`, state)
+        .then(res => {
+            console.log(res)
+            console.log(res.data)
+        })
     }
 
     return (
-        <div className="modal fade mt-5" id="modalReward" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade mt-5" id={`modalReward${props.data.id}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-body">
-                        {/* <button type="button" className="close btn-close mt-5" data-bs-dismiss="modal" aria-label="Close"></button> */}
                         <h5 className="label-modal edit">Edit Reward</h5>
                         <div onSubmit={onSubmit}>
                             <div className="form-group">
                                 <label>Category</label>
                                 <select className="form-control" name="category" value={state.category} onChange={onChange} >
                                     <option value="" defaultValue >Select</option>
-                                    <option value="Food">cash-out</option>
-                                    <option value="Education">emoney</option>
-                                    <option value="Sport">pulsa</option>
+                                    <option value="cashout">cash-out</option>
+                                    <option value="emoney">emoney</option>
+                                    <option value="pulsa">pulsa</option>
                                 </select>
                             </div>
                             <div className="form-group">
                                 <label>Company</label>
                                 <select className="form-control" name="company" value={state.company} onChange={onChange} >
                                     <option value="" defaultValue >Select</option>
-                                    <option value="Food">Telkomsel</option>
-                                    <option value="Education">Indosat</option>
-                                    <option value="Sport">Smartfren</option>
+                                    <option value="telkomsel">Telkomsel</option>
+                                    <option value="indosat">Indosat</option>
+                                    <option value="smartfren">Smartfren</option>
                                 </select>
                             </div>
                             <div className="form-group">

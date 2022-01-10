@@ -42,7 +42,7 @@ const Products = () => {
                     {
                         Object.values(productsData).map(item => (
                             <div className="col-md-4">
-                                <Card type={"user"} data={item} />
+                                <Card type={"products"} data={item} />
                             </div>
                         ))
                     }

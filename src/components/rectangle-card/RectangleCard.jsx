@@ -7,7 +7,6 @@ import { UpdateUserModal } from '../modals/UpdateUserModal'
 import { ConfirmDeleteModal } from '../modals/ConfirmDeleteModal'
 
 const RectangleCard = (props) => {
-    console.log("y", props.data)
     return (
         <div className="outlined-card">
             <div className="card-history mb-3">
@@ -26,8 +25,8 @@ const RectangleCard = (props) => {
                                     <>
                                         <img src={editButton} alt="illustration" width="20" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target={`#modalUser${props.data.id}`} />
                                         <UpdateUserModal data={props.data}/>
-                                        <img src={deleteButton} alt="illustration" width="20" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target="#modalDelete" />
-                                        <ConfirmDeleteModal />
+                                        <img src={deleteButton} alt="illustration" width="20" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target={`#modalDelete${props.data.id}`} />
+                                        <ConfirmDeleteModal data={props.data} type={"users"}/>
                                     </>
                                 </div>
                             </div>
@@ -48,14 +47,14 @@ const RectangleCard = (props) => {
                                                 <img src={editButton} alt="illustration" width="20" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target="#modalPoint" />
                                                 <UpdatePointRequestModal />
                                                 <img src={deleteButton} alt="illustration" width="20" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target="#modalDelete" />
-                                                <ConfirmDeleteModal />
+                                                {/* <ConfirmDeleteModal /> */}
                                             </>
                                             :
                                             <>
                                                 <img src={editButton} alt="illustration" width="20" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target="#modalReward" />
                                                 <UpdateRewardRequestModal />
                                                 <img src={deleteButton} alt="illustration" width="20" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target="#modalDelete" />
-                                                <ConfirmDeleteModal />
+                                                {/* <ConfirmDeleteModal /> */}
                                             </>
                                     }
                                 </div>

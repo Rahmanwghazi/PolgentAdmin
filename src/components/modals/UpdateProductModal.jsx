@@ -1,8 +1,10 @@
+import axios from "axios";
 import { useState } from "react";
 import './Modal.css'
 
-export const UpdateProductModal = () => {
-    const [state, setState] = useState("")
+export const UpdateProductModal = (props) => {
+    console.log("perrops2", props.data)
+    const [state, setState] = useState(props.data)
     const onChange = e => {
         setState({
             ...state,
@@ -17,14 +19,18 @@ export const UpdateProductModal = () => {
             img: "",
             point: "",
         })
+        axios.put(`https://61d6b4d235f71e0017c2e77e.mockapi.io/products/${props.data.id}`, state)
+        .then(res => {
+            console.log(res)
+            console.log(res.data)
+        })
     }
 
     return (
-        <div className="modal fade mt-5" id="modalProduct" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade mt-5" id={`modalProduct${props.data.id}`}tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-body">
-                        {/* <button type="button" className="close btn-close mt-5" data-bs-dismiss="modal" aria-label="Close"></button> */}
                         <h5 className="label-modal edit">Edit Product</h5>
                         <div onSubmit={onSubmit}>
                             <div className="form-group">

@@ -15,10 +15,10 @@ export const AddProductModal = () => {
         setState({
             ...state,
             name: "",
-            img: "",
+            image: "",
             point: "",
         })
-        axios.post(`https://61d6b4d235f71e0017c2e77e.mockapi.io/products`, {state})
+        axios.post(`https://61d6b4d235f71e0017c2e77e.mockapi.io/products`, state)
         .then(res => {
             console.log(res)
             console.log(res.data)
@@ -39,7 +39,7 @@ export const AddProductModal = () => {
                             </div>
                             <div className="form-group" >
                                 <label>Image </label>
-                                <input type="file" className="form-control" value={state.img} id="img" onChange={onChange} name="img" accept="image/*"></input>
+                                <input type="file" className="form-control" value={state.image} id="img" onChange={onChange} name="img" accept="image/*"></input>
                             </div>
                             <div className="form-group">
                                 <label>point  </label>

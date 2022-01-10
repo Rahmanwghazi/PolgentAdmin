@@ -20,7 +20,7 @@ export const AddUserModal = () => {
             address: ""
         })
 
-        axios.post(`https://61d6b4d235f71e0017c2e77e.mockapi.io/users`, {state})
+        axios.post(`https://61d6b4d235f71e0017c2e77e.mockapi.io/users`, state)
         .then(res => {
             console.log(res)
             console.log(res.data)

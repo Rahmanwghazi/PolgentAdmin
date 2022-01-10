@@ -39,9 +39,10 @@
 
 .deleteHover{
 	position: absolute;
+    z-index: 2;
     top: 44px;
     display: none;
-    left: 79px;	
+    left: 169px;		
     margin-top: 70px;
 }
 
