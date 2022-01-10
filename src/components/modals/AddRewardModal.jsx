@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import './Modal.css'
 
@@ -19,6 +20,11 @@ export const AddRewardModal = () => {
             img: "",
             point: "",
         })
+        axios.post(`https://61d6b4d235f71e0017c2e77e.mockapi.io/rewards`, state)
+        .then(res => {
+            console.log(res)
+            console.log(res.data)
+        })
     }
 
     return (
@@ -33,18 +39,18 @@ export const AddRewardModal = () => {
                                 <label>Category</label>
                                 <select className="form-control" name="category" value={state.category} onChange={onChange} >
                                     <option value="" defaultValue >Select</option>
-                                    <option value="Food">cash-out</option>
-                                    <option value="Education">emoney</option>
-                                    <option value="Sport">pulsa</option>
+                                    <option value="cashout">cash-out</option>
+                                    <option value="emoney">emoney</option>
+                                    <option value="pulsa">pulsa</option>
                                 </select>
                             </div>
                             <div className="form-group">
                                 <label>Company</label>
                                 <select className="form-control" name="company" value={state.company} onChange={onChange} >
                                     <option value="" defaultValue >Select</option>
-                                    <option value="Food">Telkomsel</option>
-                                    <option value="Education">Indosat</option>
-                                    <option value="Sport">Smartfren</option>
+                                    <option value="telkomsel">Telkomsel</option>
+                                    <option value="indosat">Indosat</option>
+                                    <option value="smartfren">Smartfren</option>
                                 </select>
                             </div>
                             <div className="form-group">

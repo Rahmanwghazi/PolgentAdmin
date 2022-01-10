@@ -1,7 +1,7 @@
 import { useState } from "react";
 import './Modal.css'
 
-export const UpdateRewardRequestModal = () => {
+export const UpdateRewardRequestModal = (props) => {
     const [state, setState] = useState("")
     const onChange = e => {
         setState({
