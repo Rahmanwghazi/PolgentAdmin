@@ -3,7 +3,10 @@ import { useState } from "react";
 import './Modal.css'
 
 export const AddProductModal = () => {
-    const [state, setState] = useState("")
+    const [state, setState] = useState("");
+    const [image, setImage] = useState("");
+
+
     const onChange = e => {
         setState({
             ...state,
@@ -12,16 +15,25 @@ export const AddProductModal = () => {
     }
 
     const onSubmit = e => {
+        const data = new FormData()
+        data.append("file", image)
+        data.append("upload_preset", "lw7i8fyd")
+        data.append("cloud_name", "chcpyto")
+        axios.post(`https://api.cloudinary.com/v1_1/chcpyto/image/upload`, data)
+            .then(res => {
+                state.image = res.data.url
+                axios.post(`https://61d6b4d235f71e0017c2e77e.mockapi.io/products`, state)
+                    .then(res => {
+                        console.log(res.data)
+                    })
+                    .catch(err => console.log(err))
+            })
+            .catch(err => console.log(err))
         setState({
             ...state,
-            name: "",
             image: "",
+            name: "",
             point: "",
-        })
-        axios.post(`https://61d6b4d235f71e0017c2e77e.mockapi.io/products`, state)
-        .then(res => {
-            console.log(res)
-            console.log(res.data)
         })
     }
 
@@ -39,7 +51,8 @@ export const AddProductModal = () => {
                             </div>
                             <div className="form-group" >
                                 <label>Image </label>
-                                <input type="file" className="form-control" value={state.image} id="img" onChange={onChange} name="img" accept="image/*"></input>
+                                {/* <input type="file" className="form-control" value={state.image} id="img" onChange={onChange} name="img" accept="image/*"></input> */}
+                                <input type="file" className="form-control" accept="image/*" onChange={(e) => setImage(e.target.files[0])}></input>
                             </div>
                             <div className="form-group">
                                 <label>point  </label>
