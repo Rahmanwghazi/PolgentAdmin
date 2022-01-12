@@ -9,35 +9,43 @@ const Card = (props) => {
     return (
         <div className="mb-3">
             <div className="card-body mycard">
-                <div className='col'>
-                    <img src={props.data.image} alt="illustration" width="220" style={{ marginLeft: 35 }} />
+                <div className='col' id="img-content">
+                    <img src={props.data.image} alt="illustration" />
                 </div>
                 <div className='col'>
                     <p className="card-text-desc text-center">{props.data.name}</p>
                 </div>
-                <div className='col'>
-                    <p className="card-text-point text-center">{props.data.point} points</p>
-                </div>
+                {
+                    props.type === "products" ?
+                        <div className='col'>
+                            <p className="card-text-point text-center">earn {props.data.point} points</p>
+                        </div> :
+                        <div className='col'>
+                            <p className="card-text-point text-center">need {props.data.point} points</p>
+                        </div>
+
+                }
+
                 <div className="container">
                     <div className="row">
                         {
                             props.type === "products" ?
                                 <>
                                     <div className="onHover">
-                                        <img src={deleteButton} class="deleteHover" alt="illustration" width="20" data-bs-toggle="modal" data-bs-target={`#modalDelete${props.data.id}`} />
-                                        <img src={editButton} class="editHover" alt="illustration" width="20" data-bs-toggle="modal" data-bs-target={`#modalProduct${props.data.id}`} />
+                                        <img src={deleteButton} class="deleteHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalDelete${props.data.id}`} />
+                                        <img src={editButton} class="editHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalProduct${props.data.id}`} />
                                     </div>
-                                    <ConfirmDeleteModal data={props.data} type={"products"}/>
-                                    <UpdateProductModal data={props.data}/>
+                                    <ConfirmDeleteModal data={props.data} type={"products"} />
+                                    <UpdateProductModal data={props.data} />
                                 </>
                                 :
                                 <>
                                     <div className="onHover">
-                                        <img src={deleteButton} class="deleteHover" alt="illustration" width="20" data-bs-toggle="modal" data-bs-target={`#modalDelete${props.data.id}`} />
-                                        <img src={editButton} class="editHover" alt="illustration" width="20" data-bs-toggle="modal" data-bs-target={`#modalReward${props.data.id}`} />
+                                        <img src={deleteButton} class="deleteHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalDelete${props.data.id}`} />
+                                        <img src={editButton} class="editHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalReward${props.data.id}`} />
                                     </div>
-                                    <ConfirmDeleteModal data={props.data} type={"rewards"}/>
-                                    <UpdateRewardModal data={props.data}/>
+                                    <ConfirmDeleteModal data={props.data} type={"rewards"} />
+                                    <UpdateRewardModal data={props.data} />
                                 </>
                         }
                     </div>

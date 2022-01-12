@@ -6,7 +6,7 @@
 
 .date{
     color: black;
-    font-weight: bold;
+    font-weight:normal;
     font-size: 20px;
 }
 
@@ -18,4 +18,8 @@
 .amount-text{
     font-weight: bold;
     font-size: 25px;
+}
+
+.button{
+    cursor: pointer;
 }

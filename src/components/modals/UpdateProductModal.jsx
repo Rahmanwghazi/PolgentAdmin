@@ -28,12 +28,6 @@ export const UpdateProductModal = (props) => {
                     .catch(err => console.log(err))
             })
             .catch(err => console.log(err))
-        setState({
-            ...state,
-            name: "",
-            img: "",
-            point: "",
-        })
     }
 
     return (

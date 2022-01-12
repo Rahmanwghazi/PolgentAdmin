@@ -28,14 +28,6 @@ export const UpdateRewardModal = (props) => {
                     .catch(err => console.log(err))
             })
             .catch(err => console.log(err))
-        setState({
-            ...state,
-            category: "",
-            company: "",
-            name: "",
-            img: "",
-            point: "",
-        })
     }
 
     return (
