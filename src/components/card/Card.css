@@ -1,55 +1,70 @@
-.mycard{
+.mycard {
     background-color: white;
     height: 330px;
     border-radius: 15px;
 }
 
-.card-title{
+#img-content {
+    margin: auto;
+    height: 200px;
+    width: 200px;
+}
+
+#img-content img {
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    display: block;
+}
+
+.card-title {
     color: black;
     font-size: 24px;
     font-weight: bold;
 }
 
-.card-text-desc{
+.card-text-desc {
     color: black;
     font-size: 25px;
     font-weight: bolder;
 }
 
-.card-text-point{
+.card-text-point {
     color: black;
     font-size: 20px;
 }
 
-.onHover{
+.onHover {
     margin-top: -300px;
-	position:relative;
+    position: relative;
     width: 200px;
     height: 200px;
 }
 
-.editHover{
-	position: absolute;
+.editHover {
+    position: absolute;
     z-index: 2;
     top: 44px;
     display: none;
-    left: 59px;	
+    left: 59px;
     margin-top: 70px;
+    cursor: pointer;
 }
 
-.deleteHover{
-	position: absolute;
+.deleteHover {
+    position: absolute;
     z-index: 2;
     top: 44px;
     display: none;
-    left: 169px;		
+    left: 169px;
     margin-top: 70px;
+    cursor: pointer;
 }
 
-.onHover:hover .editHover{ 
-	display:block;
+.onHover:hover .editHover {
+    display: block;
 }
 
-.onHover:hover .deleteHover{ 
-	display:block;
+.onHover:hover .deleteHover {
+    display: block;
 }
