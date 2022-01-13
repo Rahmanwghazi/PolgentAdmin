@@ -5,24 +5,14 @@ import addButton from '../../assets/addbutton.png'
 import { AddUserModal } from "../../components/modals/AddUserModal"
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { useGetUsers } from "../../hooks/useGetUsers"
+import { useQuery } from "react-query"
+import { Messaging } from "react-cssfx-loading/lib"
 
 const Users = () => {
 
-    const [usersData, setUsersData] = useState([])
-    const apiUrl = "https://61d6b4d235f71e0017c2e77e.mockapi.io/users"
-    useEffect(() => {
-        const handleFetchData = async () => {
-            try {
-                const data = await axios.get(apiUrl);
-                setUsersData(data.data);
-            } catch (err) {
-                setUsersData(err.response?.data || err);
-            }
-        }
-        handleFetchData();
-    }, []);
+    const { data } = useQuery("useGetUsers", useGetUsers)
 
-    console.log("usersData", usersData)
     return (
         <div className="container mt-5">
             <div className="row">
@@ -39,13 +29,13 @@ const Users = () => {
                             <AddUserModal />
                         </div>
                     </div>
-
-                    {
-                        Object.values(usersData).map(item => (
+                    {data ?
+                        Object.values(data)?.map(item => (
                             <div className="row">
                                 <RectangleCard type={"user"} data={item} />
                             </div>
-                        ))
+                        )) :
+                        <Messaging color="#FD7014" width="15px" height="15px" />
                     }
                 </div>
             </div>

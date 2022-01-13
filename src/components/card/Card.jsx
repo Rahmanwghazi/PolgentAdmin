@@ -32,8 +32,8 @@ const Card = (props) => {
                             props.type === "products" ?
                                 <>
                                     <div className="onHover">
-                                        <img src={deleteButton} class="deleteHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalDelete${props.data.id}`} />
-                                        <img src={editButton} class="editHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalProduct${props.data.id}`} />
+                                        <img src={deleteButton} className="deleteHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalDelete${props.data.id}`} />
+                                        <img src={editButton} className="editHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalProduct${props.data.id}`} />
                                     </div>
                                     <ConfirmDeleteModal data={props.data} type={"products"} />
                                     <UpdateProductModal data={props.data} />
@@ -41,8 +41,8 @@ const Card = (props) => {
                                 :
                                 <>
                                     <div className="onHover">
-                                        <img src={deleteButton} class="deleteHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalDelete${props.data.id}`} />
-                                        <img src={editButton} class="editHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalReward${props.data.id}`} />
+                                        <img src={deleteButton} className="deleteHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalDelete${props.data.id}`} />
+                                        <img src={editButton} className="editHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalReward${props.data.id}`} />
                                     </div>
                                     <ConfirmDeleteModal data={props.data} type={"rewards"} />
                                     <UpdateRewardModal data={props.data} />

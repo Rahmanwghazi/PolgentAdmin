@@ -6,7 +6,6 @@ export const AddProductModal = () => {
     const [state, setState] = useState("");
     const [image, setImage] = useState("");
 
-
     const onChange = e => {
         setState({
             ...state,

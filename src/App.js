@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Dashboard from './pages/dashboard/Dashboard';
@@ -8,9 +9,11 @@ import Requests from './pages/requests/Requests';
 import Rewards from './pages/rewards/Rewards';
 import Users from './pages/users/Users';
 
+const queryClient = new QueryClient()
 function App() {
   return (
     <div className="App">
+      <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Dashboard />} />
@@ -22,6 +25,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
+      </QueryClientProvider>
     </div>
   );
 }

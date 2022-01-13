@@ -3,25 +3,13 @@ import Sidebar from "../../components/sidebar/Sidebar"
 import './Products.css'
 import addButton from '../../assets/addbutton.png'
 import { AddProductModal } from "../../components/modals/AddProductModal"
-import { useEffect, useState } from "react"
-import axios from "axios"
+import { useQuery } from "react-query"
+import { useGetProducts } from "../../hooks/useGetProducts"
+import { Messaging } from "react-cssfx-loading/lib"
 
 const Products = () => {
-    const [productsData, setProductsData] = useState([])
+    const { data } = useQuery("useGetProducts", useGetProducts)
 
-    const apiUrl = "https://61d6b4d235f71e0017c2e77e.mockapi.io/products"
-
-    useEffect(() => {
-        const handleFetchData = async () => {
-            try {
-                const data = await axios.get(apiUrl);
-                setProductsData(data.data);
-            } catch (err) {
-                setProductsData(err.response?.data || err);
-            }
-        }
-        handleFetchData();
-    }, []);
     return (
         <div className="container mt-5">
             <div className="row">
@@ -39,13 +27,14 @@ const Products = () => {
                         </div>
                     </div>
                     <div className="row">
-                    {
-                        Object.values(productsData).map(item => (
-                            <div className="col-md-4">
-                                <Card type={"products"} data={item} />
-                            </div>
-                        ))
-                    }
+                        {data ?
+                            Object.values(data)?.map(item => (
+                                <div className="col-md-4">
+                                    <Card type={"products"} data={item} />
+                                </div>
+                            )) :
+                            <Messaging color="#FD7014" width="15px" height="15px" />
+                        }
                     </div>
                 </div>
             </div>
