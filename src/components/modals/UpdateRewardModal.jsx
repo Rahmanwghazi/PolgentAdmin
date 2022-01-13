@@ -4,7 +4,7 @@ import './Modal.css'
 
 export const UpdateRewardModal = (props) => {
     const [state, setState] = useState(props.data)
-    const [image, setImage] = useState("");
+    const [image, setImage] = useState("")
 
     let imgprev = state.image
 
@@ -20,19 +20,20 @@ export const UpdateRewardModal = (props) => {
         data.append("file", image)
         data.append("upload_preset", "lw7i8fyd")
         data.append("cloud_name", "chcpyto")
-        if (state.image == null) {
+        if (image !== state.image && image) {
             axios.post(`https://api.cloudinary.com/v1_1/chcpyto/image/upload`, data)
                 .then(res => {
                     state.image = res.data.url
-                    axios.put(`https://61d6b4d235f71e0017c2e77e.mockapi.io/rewards/${props.data.id}`, state)
+                    axios.put(`/rewards/${props.data.id}`, state)
                         .then(res => {
                             console.log(res.data)
                         })
                         .catch(err => console.log(err))
                 })
                 .catch(err => console.log(err))
+
         } else {
-            axios.put(`https://61d6b4d235f71e0017c2e77e.mockapi.io/rewards/${props.data.id}`, state)
+            axios.put(`/rewards/${props.data.id}`, state)
                 .then(res => {
                     console.log(res.data)
                 })
@@ -72,9 +73,14 @@ export const UpdateRewardModal = (props) => {
                             </div>
                             <div className="form-group" >
                                 <label>Image </label>
-                                <input type="file" className="form-control" accept="image/*" onChange={(e) => setImage(e.target.files[0])}></input>
-                                <img src={imgprev} alt="preview" width={35} />
-                                <p style={{ fontSize: 10 }}>{imgprev}</p>
+                                <div className="row">
+                                    <div className="col-md-10">
+                                        <input type="file" className="form-control custom-file-input" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
+                                    </div>
+                                    <div className="col-md-2">
+                                        <img src={imgprev} alt="preview" width={35} />
+                                    </div>
+                                </div>
                             </div>
                             <div className="form-group">
                                 <label>point  </label>

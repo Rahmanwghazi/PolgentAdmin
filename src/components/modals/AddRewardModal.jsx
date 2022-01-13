@@ -21,7 +21,7 @@ export const AddRewardModal = () => {
         axios.post(`https://api.cloudinary.com/v1_1/chcpyto/image/upload`, data)
             .then(res => {
                 state.image = res.data.url
-                axios.post(`https://61d6b4d235f71e0017c2e77e.mockapi.io/rewards`, state)
+                axios.post(`/rewards`, state)
                     .then(res => {
                         console.log(res.data)
                     })

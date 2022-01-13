@@ -21,7 +21,7 @@ export const AddProductModal = () => {
         axios.post(`https://api.cloudinary.com/v1_1/chcpyto/image/upload`, data)
             .then(res => {
                 state.image = res.data.url
-                axios.post(`https://61d6b4d235f71e0017c2e77e.mockapi.io/products`, state)
+                axios.post(`/products`, state)
                     .then(res => {
                         console.log(res.data)
                     })
@@ -41,7 +41,6 @@ export const AddProductModal = () => {
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-body">
-                        {/* <button type="button" className="close btn-close mt-5" data-bs-dismiss="modal" aria-label="Close"></button> */}
                         <h5 className="label-modal edit">Add Product</h5>
                         <div onSubmit={onSubmit}>
                             <div className="form-group">
@@ -50,7 +49,6 @@ export const AddProductModal = () => {
                             </div>
                             <div className="form-group" >
                                 <label>Image </label>
-                                {/* <input type="file" className="form-control" value={state.image} id="img" onChange={onChange} name="img" accept="image/*"></input> */}
                                 <input type="file" className="form-control" accept="image/*" onChange={(e) => setImage(e.target.files[0])}></input>
                             </div>
                             <div className="form-group">

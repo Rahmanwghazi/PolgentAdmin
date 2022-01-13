@@ -4,12 +4,18 @@ import './Modal.css'
 
 export const AddUserModal = () => {
     const [state, setState] = useState("")
+    const [passwordShown, setPasswordShown] = useState(false);
+
     const onChange = e => {
         setState({
             ...state,
             [e.target.name]: e.target.value,
         })
     }
+
+    const togglePassword = () => {
+        setPasswordShown(!passwordShown);
+    };
 
     const onSubmit = e => {
         setState({
@@ -20,11 +26,10 @@ export const AddUserModal = () => {
             address: ""
         })
 
-        axios.post(`https://61d6b4d235f71e0017c2e77e.mockapi.io/users`, state)
-        .then(res => {
-            console.log(res)
-            console.log(res.data)
-        })
+        axios.post(`/users`, state)
+            .then(res => {
+                console.log(res.data)
+            })
     }
     console.log("state", state)
 
@@ -33,7 +38,6 @@ export const AddUserModal = () => {
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-body">
-                        {/* <button type="button" className="close btn-close mt-5" data-bs-dismiss="modal" aria-label="Close"></button> */}
                         <h5 className="label-modal edit">Add User</h5>
                         <div onSubmit={onSubmit}>
                             <div className="form-group">
@@ -46,7 +50,14 @@ export const AddUserModal = () => {
                             </div>
                             <div className="form-group">
                                 <label>Password  </label>
-                                <input type="password" className="form-control" value={state.password} name="password" onChange={onChange} />
+                                <div className="row">
+                                    <div className="col-md-10">
+                                        <input type={passwordShown ? "text" : "password"} className="form-control" value={state.password} name="password" onChange={onChange} />
+                                    </div>
+                                    <div className="col-md-2">
+                                        <button onClick={togglePassword}> {passwordShown ? "Hide" : "Show"}</button>
+                                    </div>
+                                </div>
                             </div>
                             <button onClick={onSubmit} style={{ marginTop: "-20px" }} type="submit" className="btn btn-e mb-5" data-bs-dismiss="modal">
                                 Submit

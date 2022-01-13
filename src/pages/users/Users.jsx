@@ -3,8 +3,6 @@ import Sidebar from "../../components/sidebar/Sidebar"
 import './Users.css'
 import addButton from '../../assets/addbutton.png'
 import { AddUserModal } from "../../components/modals/AddUserModal"
-import axios from "axios"
-import { useEffect, useState } from "react"
 import { useGetUsers } from "../../hooks/useGetUsers"
 import { useQuery } from "react-query"
 import { Messaging } from "react-cssfx-loading/lib"

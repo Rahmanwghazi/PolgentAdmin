@@ -1,3 +1,4 @@
+import axios from "axios";
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
@@ -10,6 +11,7 @@ import Rewards from './pages/rewards/Rewards';
 import Users from './pages/users/Users';
 
 const queryClient = new QueryClient()
+axios.defaults.baseURL = "https://61d6b4d235f71e0017c2e77e.mockapi.io"
 function App() {
   return (
     <div className="App">
