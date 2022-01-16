@@ -2,12 +2,34 @@ import axios from "axios"
 
 export const ConfirmDeleteModal = (props) => {
 
+
     const onDelete = id => {
-        axios.delete(`https://61d6b4d235f71e0017c2e77e.mockapi.io/${props.type}/${props.data.id}`)
-        .then(res => {
-            console.log(res)
-            console.log(res.data)
-        })
+        const header = {
+            "Content-type": "application/json",
+            Authorization: localStorage.getItem('token')
+        }
+        if (props.type === "products") {
+            axios.post(`/admin/DeleteProduct`, { id: props.data.id }, {
+                headers: header
+            })
+                .then(res => {
+                    console.log("responnya = ", res.data)
+                })
+        } else if (props.type === "rewards") {
+            axios.post(`/admin/deleteRedem`, { id: props.data.id }, {
+                headers: header
+            })
+                .then(res => {
+                    console.log("responnya = ", res.data)
+                })
+        } else {
+            axios.post(`/admin/deleteUser`, { id: props.data.id }, {
+                headers: header
+            })
+                .then(res => {
+                    console.log("responnya = ", res.data)
+                })
+        }
     }
 
     return (

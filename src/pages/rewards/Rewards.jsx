@@ -27,7 +27,7 @@ const Rewards = () => {
                     </div>
                     <div className="row">
                         {data ?
-                            Object.values(data)?.map(item => (
+                            Object.values(data.data)?.map(item => (
                                 <div className="col-md-4">
                                     <Card type={"rewards"} data={item} />
                                 </div>

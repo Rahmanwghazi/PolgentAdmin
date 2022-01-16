@@ -10,7 +10,7 @@ import { Messaging } from "react-cssfx-loading/lib"
 const Users = () => {
 
     const { data } = useQuery("useGetUsers", useGetUsers)
-
+console.log("userrrdata", data)
     return (
         <div className="container mt-5">
             <div className="row">
@@ -28,7 +28,7 @@ const Users = () => {
                         </div>
                     </div>
                     {data ?
-                        Object.values(data)?.map(item => (
+                        Object.values(data.data)?.map(item => (
                             <div className="row">
                                 <RectangleCard type={"user"} data={item} />
                             </div>

@@ -14,14 +14,23 @@ export const AddRewardModal = () => {
     }
 
     const onSubmit = e => {
+        
         const data = new FormData()
         data.append("file", image)
         data.append("upload_preset", "lw7i8fyd")
         data.append("cloud_name", "chcpyto")
         axios.post(`https://api.cloudinary.com/v1_1/chcpyto/image/upload`, data)
             .then(res => {
-                state.image = res.data.url
-                axios.post(`/rewards`, state)
+                
+                state.img = res.data.url
+                console.log("datasent=",state)
+                const header = {
+                    "Content-type": "application/json",
+                    Authorization: localStorage.getItem('token')
+                }
+                axios.post(`/admin/addRedem`, state, {
+                    headers: header
+                })
                     .then(res => {
                         console.log(res.data)
                     })
@@ -30,11 +39,11 @@ export const AddRewardModal = () => {
             .catch(err => console.log(err))
         setState({
             ...state,
-            category: "",
-            company: "",
-            name: "",
+            nameType: "",
+            namaInstansi: "",
+            description: "",
             img: "",
-            point: "",
+            poin: "",
         })
     }
 
@@ -48,7 +57,7 @@ export const AddRewardModal = () => {
                         <div onSubmit={onSubmit}>
                             <div className="form-group">
                                 <label>Category</label>
-                                <select className="form-control" name="category" value={state.category} onChange={onChange} >
+                                <select className="form-control" name="nameType" value={state.nameType} onChange={onChange} >
                                     <option value="" defaultValue >Select</option>
                                     <option value="cashout">cash-out</option>
                                     <option value="emoney">emoney</option>
@@ -57,7 +66,7 @@ export const AddRewardModal = () => {
                             </div>
                             <div className="form-group">
                                 <label>Company</label>
-                                <select className="form-control" name="company" value={state.company} onChange={onChange} >
+                                <select className="form-control" name="namaInstansi" value={state.namaInstansi} onChange={onChange} >
                                     <option value="" defaultValue >Select</option>
                                     <option value="telkomsel">Telkomsel</option>
                                     <option value="indosat">Indosat</option>
@@ -66,7 +75,7 @@ export const AddRewardModal = () => {
                             </div>
                             <div className="form-group">
                                 <label>Title  </label>
-                                <input type="text" className="form-control" value={state.name} name="name" onChange={onChange} />
+                                <input type="text" className="form-control" value={state.description} name="description" onChange={onChange} />
                             </div>
                             <div className="form-group" >
                                 <label>Image </label>
@@ -74,7 +83,7 @@ export const AddRewardModal = () => {
                             </div>
                             <div className="form-group">
                                 <label>point  </label>
-                                <input type="number" className="form-control" value={state.point} name="point" onChange={onChange} />
+                                <input type="number" className="form-control" value={state.poin} name="poin" onChange={onChange} />
                             </div>
                             <button onClick={onSubmit} style={{ marginTop: "-20px" }} type="submit" className="btn btn-e mb-5" data-bs-dismiss="modal">
                                 Submit

@@ -6,8 +6,7 @@ export const UpdateProductModal = (props) => {
     const [state, setState] = useState(props.data)
     const [image, setImage] = useState("")
 
-    let imgprev = state.image
-
+    let imgprev = state.img
 
     const onChange = e => {
         setState({
@@ -17,6 +16,7 @@ export const UpdateProductModal = (props) => {
     }
 
     const onSubmit = e => {
+        
         const data = new FormData()
         data.append("file", image)
         data.append("upload_preset", "lw7i8fyd")
@@ -25,7 +25,15 @@ export const UpdateProductModal = (props) => {
             axios.post(`https://api.cloudinary.com/v1_1/chcpyto/image/upload`, data)
                 .then(res => {
                     state.image = res.data.url
-                    axios.put(`/products/${props.data.id}`, state)
+                    state.id = props.data.id
+                    console.log("statekedb", state)
+                    const header = {
+                        "Content-type": "application/json",
+                        Authorization: localStorage.getItem('token')
+                    }
+                    axios.post(`/admin/updateProduct`, state, {
+                        headers: header
+                    })
                         .then(res => {
                             console.log(res.data)
                         })
@@ -34,7 +42,9 @@ export const UpdateProductModal = (props) => {
                 .catch(err => console.log(err))
 
         } else {
-            axios.put(`/products/${props.data.id}`, state)
+            state.id = props.data.id
+            console.log("statekedb", state)
+            axios.post(`/admin/updateProduct`, state)
                 .then(res => {
                     console.log(res.data)
                 })
@@ -52,7 +62,11 @@ export const UpdateProductModal = (props) => {
                         <div onSubmit={onSubmit}>
                             <div className="form-group">
                                 <label>Name  </label>
-                                <input type="text" className="form-control" value={state.name} name="name" onChange={onChange} />
+                                <input type="text" className="form-control" value={state.nameProduct} name="nameProduct" onChange={onChange} />
+                            </div>
+                            <div className="form-group">
+                                <label>Amount  </label>
+                                <input type="number" className="form-control" value={state.amount} name="amount" onChange={onChange} />
                             </div>
                             <div className="form-group" >
                                 <label>Image </label>
@@ -67,7 +81,7 @@ export const UpdateProductModal = (props) => {
                             </div>
                             <div className="form-group">
                                 <label>point  </label>
-                                <input type="number" className="form-control" value={state.point} name="point" onChange={onChange} />
+                                <input type="number" className="form-control" value={state.poin} name="poin" onChange={onChange} />
                             </div>
                             <button onClick={onSubmit} style={{ marginTop: "-20px" }} type="submit" className="btn btn-e mb-5" data-bs-dismiss="modal">
                                 Update

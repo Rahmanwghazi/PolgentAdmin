@@ -33,7 +33,7 @@ export const UpdateUserModal = (props) => {
                         <div onSubmit={onSubmit}>
                             <div className="form-group">
                                 <label>Name</label>
-                                <input type="text" className="form-control" value={state.name} name="name" onChange={onChange} />
+                                <input type="text" className="form-control" value={state.toko} name="name" onChange={onChange} />
                             </div>
                             <div className="form-group">
                                 <label>Email</label>

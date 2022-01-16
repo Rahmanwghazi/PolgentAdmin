@@ -6,6 +6,10 @@ export const AddUserModal = () => {
     const [state, setState] = useState("")
     const [passwordShown, setPasswordShown] = useState(false);
 
+    const togglePassword = () => {
+        setPasswordShown(!passwordShown);
+    };
+
     const onChange = e => {
         setState({
             ...state,
@@ -13,23 +17,25 @@ export const AddUserModal = () => {
         })
     }
 
-    const togglePassword = () => {
-        setPasswordShown(!passwordShown);
-    };
-
     const onSubmit = e => {
-        setState({
-            ...state,
-            name: "",
-            dob: "",
-            handphone: "",
-            address: ""
+        const header = {
+            "Content-type": "application/json",
+            Authorization: localStorage.getItem('token')
+        }
+        axios.post(`/admin/register`, state, {
+            headers: header
         })
-
-        axios.post(`/users`, state)
             .then(res => {
                 console.log(res.data)
             })
+            .catch(err => console.log(err))
+        setState({
+            ...state,
+            toko: "",
+            email: "",
+            password: "",
+            poin: ""
+        })
     }
     console.log("state", state)
 
@@ -42,7 +48,7 @@ export const AddUserModal = () => {
                         <div onSubmit={onSubmit}>
                             <div className="form-group">
                                 <label>Name  </label>
-                                <input type="text" className="form-control" value={state.name} name="name" onChange={onChange} />
+                                <input type="text" className="form-control" value={state.toko} name="toko" onChange={onChange} />
                             </div>
                             <div className="form-group" >
                                 <label>Email </label>

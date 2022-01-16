@@ -10,18 +10,18 @@ const Card = (props) => {
         <div className="mb-3">
             <div className="card-body mycard">
                 <div className='col' id="img-content">
-                    <img src={props.data.image} alt="illustration" />
+                    <img src={props.data.img} alt="illustration" />
                 </div>
                 <div className='col'>
-                    <p className="card-text-desc text-center">{props.data.name}</p>
+                    <p className="card-text-desc text-center">{props.data.nameProduct}</p>
                 </div>
                 {
                     props.type === "products" ?
                         <div className='col'>
-                            <p className="card-text-point text-center">earn {props.data.point} points</p>
+                            <p className="card-text-point text-center">earn {props.data.poin} points</p>
                         </div> :
                         <div className='col'>
-                            <p className="card-text-point text-center">need {props.data.point} points</p>
+                            <p className="card-text-point text-center">need {props.data.poin} points</p>
                         </div>
 
                 }

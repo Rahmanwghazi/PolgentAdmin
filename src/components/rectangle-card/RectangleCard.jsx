@@ -16,11 +16,11 @@ const RectangleCard = (props) => {
                             <p>{props.data.createdAt}</p>
                             <div className="row">
                                 <div className="col-8">
-                                    <h5 className="card-desc mb-3">{props.data.name}</h5>
+                                    <h5 className="card-desc mb-3">{props.data.toko}</h5>
                                     <p>{props.data.email}</p>
                                 </div>
                                 <div className="col-3">
-                                    <h5 className="amount-text">point: {props.data.point}</h5>
+                                    <h5 className="amount-text">point: {props.data.poin}</h5>
                                 </div>
                                 <div className="col-1">
                                     <>
