@@ -21,9 +21,10 @@ export const AddRewardModal = () => {
         data.append("cloud_name", "chcpyto")
         axios.post(`https://api.cloudinary.com/v1_1/chcpyto/image/upload`, data)
             .then(res => {
-                
                 state.img = res.data.url
-                console.log("datasent=",state)
+                state.namaBank = state.namaInstansi
+                state.poin = state.poin / 1
+                console.log("datasent=",typeof state.poin)
                 const header = {
                     "Content-type": "application/json",
                     Authorization: localStorage.getItem('token')
@@ -43,7 +44,7 @@ export const AddRewardModal = () => {
             namaInstansi: "",
             description: "",
             img: "",
-            poin: "",
+            poin: 0
         })
     }
 

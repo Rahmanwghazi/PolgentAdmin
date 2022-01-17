@@ -12,17 +12,18 @@ const Card = (props) => {
                 <div className='col' id="img-content">
                     <img src={props.data.img} alt="illustration" />
                 </div>
-                <div className='col'>
-                    <p className="card-text-desc text-center">{props.data.nameProduct}</p>
-                </div>
                 {
                     props.type === "products" ?
-                        <div className='col'>
-                            <p className="card-text-point text-center">earn {props.data.poin} points</p>
-                        </div> :
-                        <div className='col'>
-                            <p className="card-text-point text-center">need {props.data.poin} points</p>
-                        </div>
+                        <><div className='col'>
+                            <p className="card-text-desc text-center">{props.data.nameProduct}</p>
+                        </div><div className='col'>
+                                <p className="card-text-point text-center">earn {props.data.poin} points</p>
+                            </div></> :
+                        <><div className='col'>
+                            <p className="card-text-desc text-center">{props.data.description}</p>
+                        </div><div className='col'>
+                                <p className="card-text-point text-center">need {props.data.poin} points</p>
+                            </div></>
 
                 }
 

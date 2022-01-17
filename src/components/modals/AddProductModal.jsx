@@ -21,6 +21,8 @@ export const AddProductModal = () => {
         axios.post(`https://api.cloudinary.com/v1_1/chcpyto/image/upload`, data)
             .then(res => {
                 state.img = res.data.url
+                state.poin = state.poin/1
+                
                 const header = {
                     "Content-type": "application/json",
                     Authorization: localStorage.getItem('token')
@@ -39,7 +41,7 @@ export const AddProductModal = () => {
             img: "",
             amount: "",
             productName: "",
-            poin: "",
+            poin: 0,
         })
     }
 
@@ -60,7 +62,7 @@ export const AddProductModal = () => {
                             </div>
                             <div className="form-group">
                                 <label>Amount  </label>
-                                <input type="number" className="form-control" value={state.amount} name="amount" onChange={onChange} />
+                                <input type="text" className="form-control" value={state.amount} name="amount" onChange={onChange} />
                             </div>
                             <div className="form-group">
                                 <label>point  </label>

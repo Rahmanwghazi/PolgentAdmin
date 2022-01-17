@@ -6,6 +6,8 @@ export const UpdateProductModal = (props) => {
     const [state, setState] = useState(props.data)
     const [image, setImage] = useState("")
 
+    state.productName = state.nameProduct
+
     let imgprev = state.img
 
     const onChange = e => {
@@ -14,23 +16,25 @@ export const UpdateProductModal = (props) => {
             [e.target.name]: e.target.value,
         })
     }
+    const header = {
+        "Content-type": "application/json",
+        Authorization: localStorage.getItem('token')
+    }
 
     const onSubmit = e => {
-        
         const data = new FormData()
         data.append("file", image)
         data.append("upload_preset", "lw7i8fyd")
         data.append("cloud_name", "chcpyto")
-        if (image !== state.image && image) {
+        if (image !== state.img && image) {
             axios.post(`https://api.cloudinary.com/v1_1/chcpyto/image/upload`, data)
                 .then(res => {
-                    state.image = res.data.url
+                    state.img = res.data.url
                     state.id = props.data.id
+                    state.productName = state.nameProduct
+                    state.poin = state.poin / 1
                     console.log("statekedb", state)
-                    const header = {
-                        "Content-type": "application/json",
-                        Authorization: localStorage.getItem('token')
-                    }
+
                     axios.post(`/admin/updateProduct`, state, {
                         headers: header
                     })
@@ -43,8 +47,12 @@ export const UpdateProductModal = (props) => {
 
         } else {
             state.id = props.data.id
+            state.productName = state.nameProduct
+            state.poin = state.poin / 1
             console.log("statekedb", state)
-            axios.post(`/admin/updateProduct`, state)
+            axios.post(`/admin/updateProduct`, state, {
+                headers: header
+            })
                 .then(res => {
                     console.log(res.data)
                 })
@@ -66,7 +74,7 @@ export const UpdateProductModal = (props) => {
                             </div>
                             <div className="form-group">
                                 <label>Amount  </label>
-                                <input type="number" className="form-control" value={state.amount} name="amount" onChange={onChange} />
+                                <input type="text" className="form-control" value={state.amount} name="amount" onChange={onChange} />
                             </div>
                             <div className="form-group" >
                                 <label>Image </label>

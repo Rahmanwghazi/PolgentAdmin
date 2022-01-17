@@ -10,7 +10,7 @@ import { Messaging } from "react-cssfx-loading/lib"
 const Users = () => {
 
     const { data } = useQuery("useGetUsers", useGetUsers)
-console.log("userrrdata", data)
+    
     return (
         <div className="container mt-5">
             <div className="row">
