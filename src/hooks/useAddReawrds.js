@@ -5,6 +5,7 @@ export const useAddRewards = async () =>
     .post("/rewards", {
         headers: {
             "Content-type": "application/json",
+            Authorization: localStorage.getItem('token')
         }
     })
     .then((res) => res.data)

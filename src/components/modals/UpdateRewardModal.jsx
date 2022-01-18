@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
+import { useMutation } from "react-query";
+import { header } from "../../utils/headers";
 import './Modal.css'
 
 export const UpdateRewardModal = (props) => {
@@ -15,10 +17,15 @@ export const UpdateRewardModal = (props) => {
             [e.target.name]: e.target.value,
         })
     }
-    const header = {
-        "Content-type": "application/json",
-        Authorization: localStorage.getItem('token')
-    }
+
+    const mutation = useMutation(state => {
+        return axios.post(`/admin/updateRedem`, state, {
+            headers: header
+        }).then(res => {
+            console.log(res.data)
+        })
+    })
+
 
     const onSubmit = e => {
         const data = new FormData()
@@ -31,31 +38,18 @@ export const UpdateRewardModal = (props) => {
                     state.img = res.data.url
                     state.id = props.data.id
                     state.poin = state.poin / 1
+                    state.nominalReward = state.nominalReward / 1
                     state.namaBank = state.namaInstansi
-                    console.log("statekedb", state)
-
-                    axios.post(`/admin/updateRedem`, state, {
-                        headers: header
-                    })
-                        .then(res => {
-                            console.log(res.data)
-                        })
-                        .catch(err => console.log(err))
+                    mutation.mutate(state)
                 })
                 .catch(err => console.log(err))
 
         } else {
             state.id = props.data.id
             state.poin = state.poin / 1
+            state.nominalReward = state.nominalReward / 1
             state.namaBank = state.namaInstansi
-            console.log("statekedb", state)
-            axios.post(`/admin/updateRedem`, state, {
-                headers: header
-            })
-                .then(res => {
-                    console.log(res.data)
-                })
-                .catch(err => console.log(err))
+            mutation.mutate(state)
         }
 
     }
@@ -99,6 +93,10 @@ export const UpdateRewardModal = (props) => {
                                         <img src={imgprev} alt="preview" width={35} />
                                     </div>
                                 </div>
+                            </div>
+                            <div className="form-group">
+                                <label>Nominal  </label>
+                                <input type="number" className="form-control" value={state.nominalReward} name="nominalReward" onChange={onChange} />
                             </div>
                             <div className="form-group">
                                 <label>point  </label>

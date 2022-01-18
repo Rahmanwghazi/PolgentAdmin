@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
+import { useMutation } from "react-query";
+import { header } from "../../utils/headers";
 import './Modal.css'
 
 export const AddUserModal = () => {
@@ -17,18 +19,16 @@ export const AddUserModal = () => {
         })
     }
 
-    const onSubmit = e => {
-        const header = {
-            "Content-type": "application/json",
-            Authorization: localStorage.getItem('token')
-        }
-        axios.post(`/admin/register`, state, {
+    const mutation = useMutation(state => {
+        return axios.post(`/admin/register`, state, {
             headers: header
+        }).then(res => {
+            console.log(res.data)
         })
-            .then(res => {
-                console.log(res.data)
-            })
-            .catch(err => console.log(err))
+    })
+
+    const onSubmit = e => {
+        mutation.mutate(state)
         setState({
             ...state,
             toko: "",

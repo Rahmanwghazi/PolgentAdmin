@@ -1,25 +1,41 @@
-.card-history{
+.card-history {
     background-color: white;
     border-radius: 15px;
     border-width: 2px;
 }
 
-.date{
+.date {
     color: black;
-    font-weight:normal;
+    font-weight: normal;
     font-size: 20px;
 }
 
-.card-desc{
+.card-desc {
     font-weight: bold;
     font-size: 25px;
 }
 
-.amount-text{
+.amount-text {
     font-weight: bold;
     font-size: 25px;
 }
 
-.button{
+.button {
     cursor: pointer;
+}
+
+.chip {
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 3px;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 25px;
+    margin-left: -6px;
+}
+
+.btn-i {
+    color: #FF872E;
+    font-size: 18px;
 }

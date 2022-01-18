@@ -1,8 +1,11 @@
+import axios from "axios";
 import { useState } from "react";
+import { useMutation } from "react-query";
+import { header } from "../../utils/headers";
 import './Modal.css'
 
 export const UpdatePointRequestModal = (props) => {
-    const [state, setState] = useState("")
+    const [state, setState] = useState(props.dataPoint)
     const onChange = e => {
         setState({
             ...state,
@@ -10,7 +13,16 @@ export const UpdatePointRequestModal = (props) => {
         })
     }
 
+    const mutation = useMutation(state => {
+        return axios.post(`/admin/allowRequest`, state, {
+            headers: header
+        }).then(res => {
+            console.log(res.data)
+        })
+    })
+
     const onSubmit = e => {
+        mutation.mutate(state)
         setState({
             ...state,
             status: "",
@@ -19,7 +31,7 @@ export const UpdatePointRequestModal = (props) => {
     }
 
     return (
-        <div className="modal fade mt-5" id="modalPoint" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade mt-5" id={`modalPoint${props.dataPoint.Id}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-body">
@@ -29,7 +41,6 @@ export const UpdatePointRequestModal = (props) => {
                                 <label>Status</label>
                                 <select className="form-control" name="status" value={state.status} onChange={onChange} >
                                     <option value="" defaultValue >Select</option>
-                                    <option value="Requested">Requested</option>
                                     <option value="Accepted">Accepted</option>
                                     <option value="Rejected">Rejected</option>
                                 </select>

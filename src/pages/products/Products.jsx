@@ -9,7 +9,6 @@ import { Messaging } from "react-cssfx-loading/lib"
 
 const Products = () => {
     const { data } = useQuery("useGetProducts", useGetProducts)
-    console.log("product === ", data)
     return (
         <div className="container mt-5">
             <div className="row">

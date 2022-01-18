@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
+import { useMutation } from "react-query";
+import { header } from "../../utils/headers";
 import './Modal.css'
 
 export const AddProductModal = () => {
@@ -13,6 +15,14 @@ export const AddProductModal = () => {
         })
     }
 
+    const mutation = useMutation(state => {
+        return axios.post(`/admin/addProduct`, state, {
+            headers: header
+        }).then(res => {
+            console.log(res.data)
+        })
+    })
+
     const onSubmit = e => {
         const data = new FormData()
         data.append("file", image)
@@ -21,19 +31,8 @@ export const AddProductModal = () => {
         axios.post(`https://api.cloudinary.com/v1_1/chcpyto/image/upload`, data)
             .then(res => {
                 state.img = res.data.url
-                state.poin = state.poin/1
-                
-                const header = {
-                    "Content-type": "application/json",
-                    Authorization: localStorage.getItem('token')
-                }
-                axios.post(`/admin/addProduct`, state, {
-                    headers: header
-                })
-                    .then(res => {
-                        console.log(res.data)
-                    })
-                    .catch(err => console.log(err))
+                state.poin = state.poin / 1
+                mutation.mutate(state)
             })
             .catch(err => console.log(err))
         setState({

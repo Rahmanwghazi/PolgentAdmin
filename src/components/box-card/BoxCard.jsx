@@ -1,11 +1,12 @@
 import './BoxCard.css'
 
-const BoxCard = () => {
+const BoxCard = (props) => {
+    console.log("dsdsd", props.data)
     return (
         <div className="text-white mb-3">
             <div className="card-body box-card">
-                <h5 className="card-title text-center">(card tite)</h5>
-                <p className="card-text text-center">[card content]</p>
+                <h5 className="card-title text-center">{props.title}</h5>
+                <p className="card-text text-center">{props.data}</p>
             </div>
         </div>
     )

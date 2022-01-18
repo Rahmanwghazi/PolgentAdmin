@@ -1,13 +1,9 @@
 import axios from "axios"
+import { header } from "../../utils/headers"
 
 export const ConfirmDeleteModal = (props) => {
 
-
     const onDelete = id => {
-        const header = {
-            "Content-type": "application/json",
-            Authorization: localStorage.getItem('token')
-        }
         if (props.type === "products") {
             axios.post(`/admin/DeleteProduct`, { id: props.data.id }, {
                 headers: header

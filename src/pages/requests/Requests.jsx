@@ -51,7 +51,7 @@ const Requests = () => {
                         >
                             {pointRequestData ?
                                 Object.values(pointRequestData.data)?.map(item => (
-                                    <RectangleCard type={"point"} data={item} />
+                                    <RectangleCard type={"point"} dataPoint={item} />
                                 )) :
                                 <Messaging color="#FD7014" width="15px" height="15px" />
                             }
@@ -62,7 +62,7 @@ const Requests = () => {
                         >
                             {rewardRequestData ?
                                 Object.values(rewardRequestData.data)?.map(item => (
-                                    <RectangleCard type={"reward"} data={item} />
+                                    <RectangleCard type={"reward"} dataReward={item} />
                                 )) :
                                 <Messaging color="#FD7014" width="15px" height="15px" />
                             }

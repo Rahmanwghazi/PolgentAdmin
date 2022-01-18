@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
+import { useMutation } from "react-query";
+import { header } from "../../utils/headers";
 import './Modal.css'
 
 export const UpdateProductModal = (props) => {
@@ -16,10 +18,14 @@ export const UpdateProductModal = (props) => {
             [e.target.name]: e.target.value,
         })
     }
-    const header = {
-        "Content-type": "application/json",
-        Authorization: localStorage.getItem('token')
-    }
+
+    const mutation = useMutation(state => {
+        return axios.post(`/admin/updateProduct`, state, {
+            headers: header
+        }).then(res => {
+            console.log(res.data)
+        })
+    })
 
     const onSubmit = e => {
         const data = new FormData()
@@ -33,15 +39,7 @@ export const UpdateProductModal = (props) => {
                     state.id = props.data.id
                     state.productName = state.nameProduct
                     state.poin = state.poin / 1
-                    console.log("statekedb", state)
-
-                    axios.post(`/admin/updateProduct`, state, {
-                        headers: header
-                    })
-                        .then(res => {
-                            console.log(res.data)
-                        })
-                        .catch(err => console.log(err))
+                    mutation.mutate(state)
                 })
                 .catch(err => console.log(err))
 
@@ -49,14 +47,7 @@ export const UpdateProductModal = (props) => {
             state.id = props.data.id
             state.productName = state.nameProduct
             state.poin = state.poin / 1
-            console.log("statekedb", state)
-            axios.post(`/admin/updateProduct`, state, {
-                headers: header
-            })
-                .then(res => {
-                    console.log(res.data)
-                })
-                .catch(err => console.log(err))
+            mutation.mutate(state)
         }
 
     }
