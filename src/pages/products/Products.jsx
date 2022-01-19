@@ -6,9 +6,17 @@ import { AddProductModal } from "../../components/modals/AddProductModal"
 import { useQuery } from "react-query"
 import { useGetProducts } from "../../hooks/useGetProducts"
 import { Messaging } from "react-cssfx-loading/lib"
+import { Navigate } from "react-router-dom"
 
 const Products = () => {
     const { data } = useQuery("useGetProducts", useGetProducts)
+    const isLogged = !!localStorage.getItem('token');
+    if (!isLogged) {
+        alert("you are not logged in yet!")
+        return (
+            <Navigate to="/" />
+        )
+    }
     return (
         <div className="container mt-5">
             <div className="row">

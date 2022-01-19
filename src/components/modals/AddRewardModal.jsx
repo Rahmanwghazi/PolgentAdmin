@@ -60,9 +60,9 @@ export const AddRewardModal = () => {
                                 <label>Category</label>
                                 <select className="form-control" name="nameType" value={state.nameType} onChange={onChange} >
                                     <option value="" defaultValue >Select</option>
-                                    <option value="cashout">cash-out</option>
+                                    <option value="Cash-Out">cash-out</option>
                                     <option value="emoney">emoney</option>
-                                    <option value="pulsa">pulsa</option>
+                                    <option value="Pulsa">pulsa</option>
                                 </select>
                             </div>
                             <div className="form-group">

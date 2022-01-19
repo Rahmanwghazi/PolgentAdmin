@@ -11,10 +11,12 @@
     position: relative;
     outline: none;
     border-radius: 15px 15px 0 0;
+    box-shadow: 5px 5px 20px #cbced1, -13px -13px 20px #fff;
+    background-color: #ececec;
 }
 
 .active-tabs {
-    background: white;
+    background: #F5F5F5;
     border-bottom: 1px solid transparent;
 }
 

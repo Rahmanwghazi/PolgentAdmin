@@ -1,11 +1,14 @@
-import { ConfirmDeleteModal } from "../../components/modals/ConfirmDeleteModal"
-import { UpdateUserModal } from "../../components/modals/UpdateUserModal"
-import RectangleCard from "../../components/rectangle-card/RectangleCard"
 import Sidebar from "../../components/sidebar/Sidebar"
-import editButton from '../../assets/editButton.png'
-import deleteButton from '../../assets/deleteButton.png'
 import './History.css'
+import { Navigate } from "react-router-dom"
 const History = () => {
+    const isLogged = !!localStorage.getItem('token');
+    if (!isLogged) {
+        alert("you are not logged in yet!")
+        return (
+            <Navigate to="/" />
+        )
+    }
     return (
         <div className="container mt-5">
             <div className="row">
@@ -32,9 +35,7 @@ const History = () => {
                                     </div>
                                     <div className="col-1">
                                         <>
-                                            <img src={editButton} className='buttton' alt="illustration" width="40" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target={"sd"} />
                                            
-                                            <img src={deleteButton} className='button' alt="illustration" width="40" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target={`ssd`} />
                                             
                                         </>
                                     </div>

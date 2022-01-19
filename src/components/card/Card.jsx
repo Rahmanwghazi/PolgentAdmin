@@ -7,9 +7,9 @@ import { ConfirmDeleteModal } from '../modals/ConfirmDeleteModal'
 
 const Card = (props) => {
     return (
-        <div className="mb-3">
-            <div className="card-body mycard">
-                <div className='col' id="img-content">
+        <div className="mb-3 box-wrap">
+            <div className="card-body mycard box">
+                <div className='col card-img' id="img-content">
                     <img src={props.data.img} alt="illustration" />
                 </div>
                 {

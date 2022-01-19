@@ -6,11 +6,18 @@ import { AddUserModal } from "../../components/modals/AddUserModal"
 import { useGetUsers } from "../../hooks/useGetUsers"
 import { useQuery } from "react-query"
 import { Messaging } from "react-cssfx-loading/lib"
+import { Navigate } from "react-router-dom"
 
 const Users = () => {
 
     const { data } = useQuery("useGetUsers", useGetUsers)
-    
+    const isLogged = !!localStorage.getItem('token');
+    if (!isLogged) {
+        alert("you are not logged in yet!")
+        return (
+            <Navigate to="/" />
+        )
+    }
     return (
         <div className="container mt-5">
             <div className="row">

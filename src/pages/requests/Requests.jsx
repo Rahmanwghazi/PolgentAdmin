@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import { Messaging } from "react-cssfx-loading/lib";
 import { useGetPointRequests } from "../../hooks/useGetPointRequest";
 import { useGetRewardRequests } from "../../hooks/useGetRewardRequests";
+import { Navigate } from "react-router-dom";
 
 
 const Requests = () => {
@@ -17,6 +18,14 @@ const Requests = () => {
     const toggleTab = (index) => {
         setToggleState(index);
     };
+
+    const isLogged = !!localStorage.getItem('token');
+    if (!isLogged) {
+        alert("you are not logged in yet!")
+        return (
+            <Navigate to="/" />
+        )
+    }
 
     return (
         <div className="container mt-5">

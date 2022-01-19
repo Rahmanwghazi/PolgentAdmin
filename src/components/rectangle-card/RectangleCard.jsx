@@ -1,6 +1,7 @@
 import './RectangleCard.css'
 import editButton from '../../assets/editButton.png'
 import deleteButton from '../../assets/deleteButton.png'
+import emailImg from '../../assets/email.png'
 import pointImage from '../../assets/point.png'
 import { UpdateRewardRequestModal } from '../modals/UpdateRewardRequestModal'
 import { UpdatePointRequestModal } from '../modals/UpdatePointRequestModal'
@@ -19,7 +20,7 @@ const RectangleCard = (props) => {
                             <div className="row">
                                 <div className="col-6">
                                     <h5 className="card-desc mb-3">{props.data.toko}</h5>
-                                    <p>{props.data.email}</p>
+                                    <p> <img src={emailImg} alt="email" width="20" /> {props.data.email}</p>
                                 </div>
                                 <div className="col-4">
                                     <div className="row">
