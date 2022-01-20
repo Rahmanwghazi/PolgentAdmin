@@ -1,8 +1,7 @@
 import axios from "axios";
 
 export const useGetProducts = async () =>
-    await axios
-    .get("/viewProduct", {
+    await axios.get("/viewProduct", {
         headers: {
             'Content-type': 'application/json',
         },

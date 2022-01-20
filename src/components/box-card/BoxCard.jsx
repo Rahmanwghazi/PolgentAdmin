@@ -1,7 +1,6 @@
 import './BoxCard.css'
 
 const BoxCard = (props) => {
-    console.log("dsdsd", props.data)
     return (
         <div className="text-white mb-3">
             <div className="card-body box-card">

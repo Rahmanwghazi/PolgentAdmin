@@ -7,9 +7,19 @@ import { useQuery } from "react-query"
 import { useGetProducts } from "../../hooks/useGetProducts"
 import { Messaging } from "react-cssfx-loading/lib"
 import { Navigate } from "react-router-dom"
+import { useState } from "react/cjs/react.development"
 
 const Products = () => {
+
+    const handleReRender = () => {
+        setReRender(!reRender);
+    };
+
+
+    const [reRender, setReRender] = useState(false);
     const { data } = useQuery("useGetProducts", useGetProducts)
+    console.log(reRender)
+
     const isLogged = !!localStorage.getItem('token');
     if (!isLogged) {
         alert("you are not logged in yet!")
@@ -17,6 +27,7 @@ const Products = () => {
             <Navigate to="/" />
         )
     }
+
     return (
         <div className="container mt-5">
             <div className="row">
@@ -26,11 +37,11 @@ const Products = () => {
                 <div className="col-md-9">
                     <div className="title-page row">
                         <div className="col-2">
-                            <p>Products</p>
+                            <p>Products {reRender === true ? "true" : "false"}</p>
                         </div>
                         <div className="col-2">
                             <img src={addButton} alt="illustration" width="20" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target="#modalFormName" />
-                            <AddProductModal />
+                            <AddProductModal onReRender={handleReRender} />
                         </div>
                     </div>
                     <div className="row">

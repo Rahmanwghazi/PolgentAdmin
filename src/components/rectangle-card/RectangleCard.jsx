@@ -7,6 +7,7 @@ import { UpdateRewardRequestModal } from '../modals/UpdateRewardRequestModal'
 import { UpdatePointRequestModal } from '../modals/UpdatePointRequestModal'
 import { UpdateUserModal } from '../modals/UpdateUserModal'
 import { ConfirmDeleteModal } from '../modals/ConfirmDeleteModal'
+import { extractDate } from '../../utils/dateFormatter'
 
 const RectangleCard = (props) => {
 
@@ -16,7 +17,7 @@ const RectangleCard = (props) => {
                 {
                     props.type === "user" ?
                         <div className="card-body date">
-                            <p>{props.data.createdAt}</p>
+                            <p>{extractDate(props.data.createdAt)}</p>
                             <div className="row">
                                 <div className="col-6">
                                     <h5 className="card-desc mb-3">{props.data.toko}</h5>
@@ -42,44 +43,69 @@ const RectangleCard = (props) => {
                         <div className="card-body date">
                             {
                                 props.type === "point" ?
-                                    <><p>{props.dataPoint.CreatedAt}</p>
+                                    <><p>{extractDate(props.dataPoint.CreatedAt)}</p>
                                         <div className="row">
                                             <div className="col-5">
                                                 <h5 className="card-desc mb-3">{props.dataPoint.User.Toko}</h5>
                                                 <div className="chip">
-                                                    <p className='chip' style={props.dataPoint.Status === "Request" ? { backgroundColor: "#c5d1dd" } : { backgroundColor: "#ccf1b4" }}>{props.dataPoint.Status}</p>
+                                                    {
+                                                        props.dataPoint.Status === "Request" ?
+                                                            <p className='chip' style={{ backgroundColor: "#c5d1dd" }}> {props.dataPoint.Status}</p> :
+                                                            (props.dataPoint.Status === "Rejected" ?
+                                                                <p className='chip' style={{ backgroundColor: "#FFCCCC" }}> {props.dataPoint.Status}</p> :
+                                                                <p className='chip' style={{ backgroundColor: "#ccf1b4" }}> {props.dataPoint.Status}</p>
+                                                            )
+                                                    }
                                                 </div>
                                             </div>
                                             <div className="col-5">
                                                 <h5 className="amount-text"> {props.dataPoint.Product.NameProduct} </h5>
                                             </div>
                                             <div className="col-2">
-                                                <>
-                                                    <img src={editButton} className='buttton mb-2' alt="illustration" width="40" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target={`#modalPoint${props.dataPoint.Id}`} />
-                                                    <UpdatePointRequestModal dataPoint={props.dataPoint} />
-                                                    <p><a className="btn btn-i" href="https://res.cloudinary.com/chcpyto/image/upload/v1642491530/f40k84d78dgcgxcdylxw.png" target="_blank" rel="noopener noreferrer">invoice</a>.</p>
+                                                <>{
+                                                    props.dataPoint.Status === "Accepted" ?
+                                                        <p><a className="btn btn-i" href="https://res.cloudinary.com/chcpyto/image/upload/v1642491530/f40k84d78dgcgxcdylxw.png" target="_blank" rel="noopener noreferrer">invoice</a>.</p>
+                                                        : (
+                                                            props.dataPoint.Status === "Rejected" ?
+                                                                <p><a className="btn btn-i" href="https://res.cloudinary.com/chcpyto/image/upload/v1642491530/f40k84d78dgcgxcdylxw.png" target="_blank" rel="noopener noreferrer">invoice</a>.</p>
+                                                                :
+                                                                <><img src={editButton} className='buttton mb-2' alt="illustration" width="40" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target={`#modalPoint${props.dataPoint.Id}`} />
+                                                                    <UpdatePointRequestModal dataPoint={props.dataPoint} /><p>
+                                                                        <a className="btn btn-i" href="https://res.cloudinary.com/chcpyto/image/upload/v1642491530/f40k84d78dgcgxcdylxw.png" target="_blank" rel="noopener noreferrer">invoice</a>.</p></>
+                                                        )
+
+                                                }
                                                 </>
 
                                             </div>
                                         </div></>
-
                                     :
+                                    (
+                                        props.type === "reward" ?
+                                            <><p>{extractDate(props.dataReward.CreatedAt)}</p>
+                                                <div className="row">
+                                                    <div className="col-5">
+                                                        <h5 className="card-desc mb-3">{props.dataReward.User.Toko}</h5>
+                                                        <p>{props.dataReward.Status}</p>
+                                                    </div>
+                                                    <div className="col-5">
+                                                        <h5 className="amount-text">{props.dataReward.Reward.Description} </h5>
+                                                    </div>
+                                                    <div className="col-2">
+                                                        <img src={editButton} className='buttton mb-2' alt="illustration" width="40" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target="#modalReward" />
+                                                        <UpdateRewardRequestModal dataReward={props.dataReward} />
+                                                        <p><a className="btn btn-i" href={props.dataReward.MidtransLink} target="_blank" rel="noopener noreferrer">process</a>.</p>
+                                                    </div>
+                                                </div></>
+                                            :
+                                            <><p>{extractDate(props.dataHistory.createdAt)}</p>
+                                                <div className="row">
+                                                    <div className="col">
+                                                        <h5 className="card-desc mb-3">{props.dataHistory.description}'s point request</h5>
+                                                    </div>
+                                                </div></>
+                                    )
 
-                                    <><p>{props.dataReward.CreatedAt}</p>
-                                        <div className="row">
-                                            <div className="col-5">
-                                                <h5 className="card-desc mb-3">{props.dataReward.User.Toko}</h5>
-                                                <p>{props.dataReward.Status}</p>
-                                            </div>
-                                            <div className="col-5">
-                                                <h5 className="amount-text">{props.dataReward.Reward.Description} </h5>
-                                            </div>
-                                            <div className="col-2">
-                                                <img src={editButton} className='buttton mb-2' alt="illustration" width="40" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target="#modalReward" />
-                                                <UpdateRewardRequestModal dataReward={props.dataReward} />
-                                                <p><a className="btn btn-i" href={props.dataReward.MidtransLink} target="_blank" rel="noopener noreferrer">process</a>.</p>
-                                            </div>
-                                        </div></>
                             }
                         </div>
                 }

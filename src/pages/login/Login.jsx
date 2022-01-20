@@ -17,13 +17,12 @@ const Login = () => {
             ...state,
             [e.target.name]: e.target.value,
         })
+        console.log(state)
     }
 
     const onSubmit = e => {
-        console.log("statelogin", state)
         axios.post(`/admin/login`, state)
             .then((response) => {
-                console.log("datassss", response.data);
                 console.log(response.status);
                 console.log(response.statusText);
                 console.log(response.headers);
@@ -31,11 +30,11 @@ const Login = () => {
                 if (response.status === 200) {
                     localStorage.setItem("token", "Bearer " + response.data.data.token);
                     <Navigate to="/dashboard" />
-                } else {
-                    alert("username or password wrong!")
                 }
             })
-            .catch((err) => console.error(err));
+            .catch((err) =>
+                console.log(err)
+            );
     }
 
     const isLogged = !!localStorage.getItem('token');

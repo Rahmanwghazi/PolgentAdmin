@@ -1,7 +1,13 @@
 import Sidebar from "../../components/sidebar/Sidebar"
 import './History.css'
 import { Navigate } from "react-router-dom"
+import { useGetAdminHistories } from "../../hooks/useGetAdminHistories"
+import { useQuery } from "react-query"
+import RectangleCard from "../../components/rectangle-card/RectangleCard"
+import { Messaging } from "react-cssfx-loading/lib"
 const History = () => {
+    const { data } = useQuery("useGetAdminHistories", useGetAdminHistories)
+    console.log("sdsdsdsdd", data)
     const isLogged = !!localStorage.getItem('token');
     if (!isLogged) {
         alert("you are not logged in yet!")
@@ -17,37 +23,21 @@ const History = () => {
                 </div>
                 <div className="col-md-9">
                     <div className="title-page row">
-                        <div className="col">
+                        <div className="col-2">
                             <p>History</p>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="outlined-card">
-                            <div className="card-history mb-3">
-                                <div className="card-body date">
+                    {data ?
+                        Object.values(data.data)?.map(item => (
                             <div className="row">
-                                    <div className="col-8">
-                                        <h5 className="card-desc mb-3">(date)</h5>
-                                        <p>(desc)</p>
-                                    </div>
-                                    <div className="col-3">
-                                        <h5 className="amount-text">(desc)</h5>
-                                    </div>
-                                    <div className="col-1">
-                                        <>
-                                           
-                                            
-                                        </>
-                                    </div>
-                                </div>
-                                </div>
+                                <RectangleCard type={"history"} dataHistory={item} />
                             </div>
-                        </div>
-                    </div>
-
+                        )) :
+                        <Messaging color="#FD7014" width="15px" height="15px" />
+                    }
                 </div>
             </div>
-        </div >
+        </div>
     )
 }
 

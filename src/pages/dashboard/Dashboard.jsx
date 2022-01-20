@@ -14,6 +14,7 @@ const Dashboard = () => {
     const { data: dataReward } = useQuery("useGetRewards", useGetRewards)
     const { data: dataUser } = useQuery("useGetUsers", useGetUsers)
     const isLogged = !!localStorage.getItem('token');
+    
     if (!isLogged) {
         alert("you are not logged in yet!")
         return (
@@ -45,7 +46,7 @@ const Dashboard = () => {
                                 </div>
                                 <div className="col-2 btn-logout">
                                     <Link to="/">
-                                        <img className="button" title="logout" src={logoutButton} onClick={() => { logoutHandler() }} className='buttton' alt="illustration" width="20" />
+                                        <img className="button" title="logout" src={logoutButton} onClick={() => { logoutHandler() }} alt="illustration" width="20" />
                                     </Link>
                                 </div>
                             </div>
