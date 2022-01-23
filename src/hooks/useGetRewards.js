@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const useGetRewards = async () =>
     await axios
-    .get("/rewards", {
+    .get("/viewRedem", {
         headers: {
             "Content-type": "application/json",
         }

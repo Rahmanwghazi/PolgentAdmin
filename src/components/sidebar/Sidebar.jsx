@@ -5,11 +5,11 @@ import { NavLink } from "react-router-dom";
 const Sidebar = () => {
   return (
     <div className="sidenav">
-      <a href="/#" className="mt-5">
-        <img className="logo"
+      <a href="/dashboard" className="mt-5">
+        <img className="logo-sidebar"
           src={logo} alt="logo"></img>
       </a>
-      <NavLink className={({ isActive }) => isActive? "active": ''} to="/">Dashboard</NavLink>
+      <NavLink className={({ isActive }) => isActive? "active": ''} to="/dashboard">Dashboard</NavLink>
       <NavLink className={({ isActive }) => isActive? "active": ''} to="/requests">Requests</NavLink>
       <NavLink className={({ isActive }) => isActive? "active": ''} to="/users">Users</NavLink>
       <NavLink className={({ isActive }) => isActive? "active": ''} to="/rewards">Rewards</NavLink>

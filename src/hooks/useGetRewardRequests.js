@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const useGetUsers = async () =>
+export const useGetRewardRequests = async () =>
     await axios
-    .get("/admin/viewUser", {
+    .get("/admin/viewRedemUser", {
         headers: {
             "Content-type": "application/json",
             Authorization: localStorage.getItem('token')

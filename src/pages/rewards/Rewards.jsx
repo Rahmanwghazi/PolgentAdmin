@@ -6,10 +6,18 @@ import { AddRewardModal } from "../../components/modals/AddRewardModal"
 import { useGetRewards } from "../../hooks/useGetRewards"
 import { useQuery } from "react-query"
 import { Messaging } from "react-cssfx-loading/lib"
+import { Navigate } from "react-router-dom"
 const Rewards = () => {
     const { data } = useQuery("useGetRewards", useGetRewards)
-
+    const isLogged = !!localStorage.getItem('token');
+    if (!isLogged) {
+        alert("you are not logged in yet!")
+        return (
+            <Navigate to="/" />
+        )
+    }
     return (
+        
         <div className="container mt-5">
             <div className="row">
                 <div className="col-md-3 d-none d-xxl-block">
@@ -27,7 +35,7 @@ const Rewards = () => {
                     </div>
                     <div className="row">
                         {data ?
-                            Object.values(data)?.map(item => (
+                            Object.values(data.data)?.map(item => (
                                 <div className="col-md-4">
                                     <Card type={"rewards"} data={item} />
                                 </div>

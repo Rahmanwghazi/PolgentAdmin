@@ -7,22 +7,23 @@ import { ConfirmDeleteModal } from '../modals/ConfirmDeleteModal'
 
 const Card = (props) => {
     return (
-        <div className="mb-3">
-            <div className="card-body mycard">
-                <div className='col' id="img-content">
-                    <img src={props.data.image} alt="illustration" />
-                </div>
-                <div className='col'>
-                    <p className="card-text-desc text-center">{props.data.name}</p>
+        <div className="mb-3 box-wrap">
+            <div className="card-body mycard box">
+                <div className='col card-img' id="img-content">
+                    <img src={props.data.img} alt="illustration" />
                 </div>
                 {
                     props.type === "products" ?
-                        <div className='col'>
-                            <p className="card-text-point text-center">earn {props.data.point} points</p>
-                        </div> :
-                        <div className='col'>
-                            <p className="card-text-point text-center">need {props.data.point} points</p>
-                        </div>
+                        <><div className='col'>
+                            <p className="card-text-desc text-center">{props.data.nameProduct}</p>
+                        </div><div className='col'>
+                                <p className="card-text-point text-center">earn {props.data.poin} points</p>
+                            </div></> :
+                        <><div className='col'>
+                            <p className="card-text-desc text-center">{props.data.description}</p>
+                        </div><div className='col'>
+                                <p className="card-text-point text-center">need {props.data.poin} points</p>
+                            </div></>
 
                 }
 
@@ -35,7 +36,7 @@ const Card = (props) => {
                                         <img src={deleteButton} className="deleteHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalDelete${props.data.id}`} />
                                         <img src={editButton} className="editHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalProduct${props.data.id}`} />
                                     </div>
-                                    <ConfirmDeleteModal data={props.data} type={"products"} />
+                                    <ConfirmDeleteModal data={props.data} name={props.data.nameProduct}type={"products"} />
                                     <UpdateProductModal data={props.data} />
                                 </>
                                 :
@@ -44,7 +45,7 @@ const Card = (props) => {
                                         <img src={deleteButton} className="deleteHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalDelete${props.data.id}`} />
                                         <img src={editButton} className="editHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalReward${props.data.id}`} />
                                     </div>
-                                    <ConfirmDeleteModal data={props.data} type={"rewards"} />
+                                    <ConfirmDeleteModal data={props.data} name={props.data.description} type={"rewards"} />
                                     <UpdateRewardModal data={props.data} />
                                 </>
                         }
