@@ -10,7 +10,7 @@ import { ConfirmDeleteModal } from '../modals/ConfirmDeleteModal'
 import { extractDate } from '../../utils/dateFormatter'
 
 const RectangleCard = (props) => {
-
+console.log("heer",props.dataReward)
     return (
         <div className="outlined-card">
             <div className="card-history mb-3">
@@ -59,12 +59,13 @@ const RectangleCard = (props) => {
                                                 </div>
                                             </div>
                                             <div className="col-5">
-                                                <h5 className="amount-text"> {props.dataPoint.Product.NameProduct} </h5>
+                                                <h5 className="amount-text"> {props.dataPoint.Product.Amount} x {props.dataPoint.Product.NameProduct} </h5>
+                                                <h5 className="amount-text"> @{props.dataPoint.Product.Poin} pts </h5>
                                             </div>
                                             <div className="col-2">
                                                 <>{
                                                     props.dataPoint.Status === "Accepted" ?
-                                                        <p><a className="btn btn-i" href="https://res.cloudinary.com/chcpyto/image/upload/v1642491530/f40k84d78dgcgxcdylxw.png" target="_blank" rel="noopener noreferrer">invoice</a>.</p>
+                                                        <p><a className="btn btn-i" href={props.dataPoint.ImageRequest} target="_blank" rel="noopener noreferrer">invoice</a>.</p>
                                                         : (
                                                             props.dataPoint.Status === "Rejected" ?
                                                                 <p><a className="btn btn-i" href="https://res.cloudinary.com/chcpyto/image/upload/v1642491530/f40k84d78dgcgxcdylxw.png" target="_blank" rel="noopener noreferrer">invoice</a>.</p>

@@ -5,7 +5,7 @@ import { header } from "../../utils/headers";
 import './Modal.css'
 
 export const UpdateRewardModal = (props) => {
-    console.log("statedaripro", props)
+    
     const [state, setState] = useState(props.data)
     const [image, setImage] = useState("")
 
@@ -39,7 +39,7 @@ export const UpdateRewardModal = (props) => {
                     state.id = props.data.id
                     state.poin = state.poin / 1
                     state.nominalReward = state.nominalReward / 1
-                    state.namaBank = state.namaInstansi
+                    state.namaBank = "-"
                     mutation.mutate(state)
                 })
                 .catch(err => console.log(err))
@@ -48,7 +48,7 @@ export const UpdateRewardModal = (props) => {
             state.id = props.data.id
             state.poin = state.poin / 1
             state.nominalReward = state.nominalReward / 1
-            state.namaBank = state.namaInstansi
+            state.namaBank = "-"
             mutation.mutate(state)
         }
 
@@ -69,15 +69,6 @@ export const UpdateRewardModal = (props) => {
                                         <option value="cash out">cash out</option>
                                         <option value="emoney">emoney</option>
                                         <option value="pulsa">pulsa</option>
-                                    </select>
-                                </div>
-                                <div className="form-group">
-                                    <label>Company</label>
-                                    <select className="form-control form-field d-flex align-items-center" name="namaInstansi" value={state.namaInstansi} onChange={onChange} >
-                                        <option value="" defaultValue >Select</option>
-                                        <option value="telkomsel">Telkomsel</option>
-                                        <option value="indosat">Indosat</option>
-                                        <option value="smartfren">Smartfren</option>
                                     </select>
                                 </div>
                                 <div className="form-group">

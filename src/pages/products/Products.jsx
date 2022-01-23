@@ -10,13 +10,12 @@ import { Navigate } from "react-router-dom"
 import { useState } from "react/cjs/react.development"
 
 const Products = () => {
+    const [reRender, setReRender] = useState(false);
 
     const handleReRender = () => {
         setReRender(!reRender);
     };
 
-
-    const [reRender, setReRender] = useState(false);
     const { data } = useQuery("useGetProducts", useGetProducts)
     console.log(reRender)
 
@@ -48,7 +47,7 @@ const Products = () => {
                         {data ?
                             Object.values(data.data).map(item => (
                                 <div className="col-md-4">
-                                    <Card type={"products"} data={item} />
+                                    <Card type={"products"} data={item}/>
                                 </div>
                             )) :
                             <Messaging color="#FD7014" width="15px" height="15px" />

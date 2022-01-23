@@ -19,7 +19,7 @@ export const ConfirmDeleteModal = (props) => {
                     console.log("responnya = ", res.data)
                 })
         } else {
-            axios.post(`/admin/deleteUser`, { id: props.data.id }, {
+            axios.post(`/user/deleteUser`, { id: props.data.id }, {
                 headers: header
             })
                 .then(res => {

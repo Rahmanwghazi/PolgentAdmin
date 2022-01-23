@@ -31,7 +31,7 @@ export const AddRewardModal = () => {
         axios.post(`https://api.cloudinary.com/v1_1/chcpyto/image/upload`, data)
             .then(res => {
                 state.img = res.data.url
-                state.namaBank = state.namaInstansi
+                state.namaBank = "-"
                 state.poin = state.poin / 1
                 state.nominalReward = state.nominalReward / 1
                 mutation.mutate(state)
@@ -64,15 +64,6 @@ export const AddRewardModal = () => {
                                         <option value="Cash-Out">cash-out</option>
                                         <option value="emoney">emoney</option>
                                         <option value="Pulsa">pulsa</option>
-                                    </select>
-                                </div>
-                                <div className="form-group">
-                                    <label>Company</label>
-                                    <select className="form-control form-field d-flex align-items-center" name="namaInstansi" value={state.namaInstansi} onChange={onChange} >
-                                        <option value="" defaultValue >Select</option>
-                                        <option value="telkomsel">Telkomsel</option>
-                                        <option value="indosat">Indosat</option>
-                                        <option value="smartfren">Smartfren</option>
                                     </select>
                                 </div>
                                 <div className="form-group">

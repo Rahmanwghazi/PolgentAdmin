@@ -37,7 +37,6 @@ export const AddUserModal = () => {
             poin: ""
         })
     }
-    console.log("state", state)
 
     return (
         <div className="modal fade mt-5" id="modalFormName" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

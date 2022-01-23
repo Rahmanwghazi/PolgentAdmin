@@ -78,7 +78,7 @@ const Dashboard = () => {
                             <BoxCard data={dataProduct ?
                                 Object.keys(dataProduct.data).length
                                 :
-                                <Messaging color="#FD7014" width="15px" height="15px" />
+                                <Messaging color="#FD7014" width="15px" height="15px"/>
                             } title={"total apa gitu"} />
                         </div>
                     </div>

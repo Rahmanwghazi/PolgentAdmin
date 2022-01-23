@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const Sidebar = () => {
   return (
     <div className="sidenav">
-      <a href="/#" className="mt-5">
+      <a href="/dashboard" className="mt-5">
         <img className="logo-sidebar"
           src={logo} alt="logo"></img>
       </a>

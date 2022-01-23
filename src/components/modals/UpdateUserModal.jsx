@@ -18,7 +18,7 @@ export const UpdateUserModal = (props) => {
     }
 
     const onSubmit = e => {
-        axios.post(`/admin/updateUser`, state, {
+        axios.post(`/user/updateUser`, state, {
             headers: header
         })
             .then(res => {

@@ -13,7 +13,7 @@ import Users from './pages/users/Users';
 
 const queryClient = new QueryClient()
 // axios.defaults.baseURL = "https://61d6b4d235f71e0017c2e77e.mockapi.io"
-axios.defaults.baseURL = "http://localhost:8080"
+axios.defaults.baseURL = "http://3.21.75.144:8080"
 
 function App() {
   return (

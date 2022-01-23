@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { useMutation } from "react-query";
-import { Navigate } from "react-router-dom";
 import { header } from "../../utils/headers";
 import './Modal.css'
 
@@ -25,7 +24,6 @@ export const AddProductModal = (props) => {
     })
 
     const onSubmit = e => {
-        <Navigate to="/products" />
         const data = new FormData()
         data.append("file", image)
         data.append("upload_preset", "lw7i8fyd")
@@ -45,7 +43,6 @@ export const AddProductModal = (props) => {
             productName: "",
             poin: 0,
         });
-
     }
 
     return (
