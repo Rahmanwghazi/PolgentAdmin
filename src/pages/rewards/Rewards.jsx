@@ -8,7 +8,12 @@ import { useQuery } from "react-query"
 import { Messaging } from "react-cssfx-loading/lib"
 import { Navigate } from "react-router-dom"
 const Rewards = () => {
-    const { data } = useQuery("useGetRewards", useGetRewards)
+    const { data, refetch } = useQuery("useGetRewards", useGetRewards)
+
+    const handleReRender = () => {
+        refetch()
+    };
+
     const isLogged = !!localStorage.getItem('token');
     if (!isLogged) {
         alert("you are not logged in yet!")
@@ -30,14 +35,14 @@ const Rewards = () => {
                         </div>
                         <div className="col-2">
                             <img src={addButton} alt="illustration" width="20" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target="#modalFormName" />
-                            <AddRewardModal />
+                            <AddRewardModal onReRender={handleReRender} />
                         </div>
                     </div>
                     <div className="row">
                         {data ?
                             Object.values(data.data)?.map(item => (
                                 <div className="col-md-4">
-                                    <Card type={"rewards"} data={item} />
+                                    <Card type={"rewards"} data={item} onReRender={handleReRender}/>
                                 </div>
                             )) :
                             <Messaging color="#FD7014" width="15px" height="15px" />

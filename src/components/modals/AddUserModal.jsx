@@ -4,7 +4,8 @@ import { useMutation } from "react-query";
 import { header } from "../../utils/headers";
 import './Modal.css'
 
-export const AddUserModal = () => {
+export const AddUserModal = (props) => {
+    const { onReRender } = props;
     const [state, setState] = useState("")
     const [passwordShown, setPasswordShown] = useState(false);
 
@@ -22,9 +23,7 @@ export const AddUserModal = () => {
     const mutation = useMutation(state => {
         return axios.post(`/admin/register`, state, {
             headers: header
-        }).then(res => {
-            console.log(res.data)
-        })
+        }).then(() => onReRender())
     })
 
     const onSubmit = e => {

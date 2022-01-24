@@ -5,7 +5,7 @@ import { header } from "../../utils/headers";
 import './Modal.css'
 
 export const UpdateRewardModal = (props) => {
-    
+    const { onReRender } = props;
     const [state, setState] = useState(props.data)
     const [image, setImage] = useState("")
 
@@ -21,9 +21,7 @@ export const UpdateRewardModal = (props) => {
     const mutation = useMutation(state => {
         return axios.post(`/admin/updateRedem`, state, {
             headers: header
-        }).then(res => {
-            console.log(res.data)
-        })
+        }).then(() => onReRender())
     })
 
 

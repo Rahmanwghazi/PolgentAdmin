@@ -32,6 +32,7 @@ const Login = () => {
             localStorage.setItem("token", "Bearer " + token);
             setSuccess(true);
         } catch (err) {
+            console.log(err)
             if (!err?.res) {
                 setErrMsg('Wrong Username or Password!');
             }

@@ -5,6 +5,7 @@ import { header } from "../../utils/headers";
 import './Modal.css'
 
 export const UpdatePointRequestModal = (props) => {
+    const { onReRender } = props;
     const [state, setState] = useState(props.dataPoint)
     const onChange = e => {
         setState({
@@ -16,9 +17,7 @@ export const UpdatePointRequestModal = (props) => {
     const mutation = useMutation(state => {
         return axios.post(`/admin/allowRequest`, state, {
             headers: header
-        }).then(res => {
-            console.log(res.data)
-        })
+        }).then(() => onReRender())
     })
 
     const onSubmit = e => {

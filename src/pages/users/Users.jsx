@@ -10,8 +10,13 @@ import { Navigate } from "react-router-dom"
 
 const Users = () => {
 
-    const { data } = useQuery("useGetUsers", useGetUsers)
+    const { data, refetch } = useQuery("useGetUsers", useGetUsers)
     const isLogged = !!localStorage.getItem('token');
+
+    const handleReRender = () => {
+        refetch()
+    };
+
     if (!isLogged) {
         alert("you are not logged in yet!")
         return (
@@ -31,7 +36,7 @@ const Users = () => {
                         </div>
                         <div className="col-2">
                             <img src={addButton} alt="illustration" width="20" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target="#modalFormName" />
-                            <AddUserModal />
+                            <AddUserModal onReRender={handleReRender} />
                         </div>
                     </div>
                     {data ?

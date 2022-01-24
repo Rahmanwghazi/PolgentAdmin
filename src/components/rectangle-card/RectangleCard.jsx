@@ -33,9 +33,9 @@ console.log("heer",props.dataReward)
                                 <div className="col-2">
                                     <>
                                         <img src={editButton} className='buttton' alt="illustration" width="40" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target={`#modalUser${props.data.id}`} />
-                                        <UpdateUserModal data={props.data} />
+                                        <UpdateUserModal data={props.data} onReRender={props.onReRender}/>
                                         <img src={deleteButton} className='button' alt="illustration" width="40" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target={`#modalDelete${props.data.id}`} />
-                                        <ConfirmDeleteModal data={props.data} type={"users"} />
+                                        <ConfirmDeleteModal data={props.data} type={"users"} onReRender={props.onReRender}/>
                                     </>
                                 </div>
                             </div>
@@ -68,11 +68,11 @@ console.log("heer",props.dataReward)
                                                         <p><a className="btn btn-i" href={props.dataPoint.ImageRequest} target="_blank" rel="noopener noreferrer">invoice</a>.</p>
                                                         : (
                                                             props.dataPoint.Status === "Rejected" ?
-                                                                <p><a className="btn btn-i" href="https://res.cloudinary.com/chcpyto/image/upload/v1642491530/f40k84d78dgcgxcdylxw.png" target="_blank" rel="noopener noreferrer">invoice</a>.</p>
+                                                                <p><a className="btn btn-i" href={props.dataPoint.ImageRequest} target="_blank" rel="noopener noreferrer">invoice</a>.</p>
                                                                 :
                                                                 <><img src={editButton} className='buttton mb-2' alt="illustration" width="40" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target={`#modalPoint${props.dataPoint.Id}`} />
-                                                                    <UpdatePointRequestModal dataPoint={props.dataPoint} /><p>
-                                                                        <a className="btn btn-i" href="https://res.cloudinary.com/chcpyto/image/upload/v1642491530/f40k84d78dgcgxcdylxw.png" target="_blank" rel="noopener noreferrer">invoice</a>.</p></>
+                                                                    <UpdatePointRequestModal dataPoint={props.dataPoint} onReRender={props.onReRender}/><p>
+                                                                        <a className="btn btn-i" href={props.dataPoint.ImageRequest} target="_blank" rel="noopener noreferrer">invoice</a>.</p></>
                                                         )
 
                                                 }

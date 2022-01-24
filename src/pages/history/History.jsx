@@ -5,9 +5,17 @@ import { useGetAdminHistories } from "../../hooks/useGetAdminHistories"
 import { useQuery } from "react-query"
 import RectangleCard from "../../components/rectangle-card/RectangleCard"
 import { Messaging } from "react-cssfx-loading/lib"
+import { useGetPointRequests } from "../../hooks/useGetPointRequest";
+import { useGetRewardRequests } from "../../hooks/useGetRewardRequests";
+import { extractDate } from "../../utils/dateFormatter"
 const History = () => {
-    const { data } = useQuery("useGetAdminHistories", useGetAdminHistories)
-    console.log("sdsdsdsdd", data)
+
+    const { data: historyAdmin } = useQuery("useGetAdminHistories", useGetAdminHistories)
+    const { data: pointRequestData } = useQuery("useGetPointRequests", useGetPointRequests)
+    const { data: rewardRequestData } = useQuery("useGetRewardRequests", useGetRewardRequests)
+
+
+
     const isLogged = !!localStorage.getItem('token');
     if (!isLogged) {
         alert("you are not logged in yet!")
@@ -27,14 +35,80 @@ const History = () => {
                             <p>History</p>
                         </div>
                     </div>
-                    {data ?
-                        Object.values(data.data)?.map(item => (
+                    Point Request
+                    <table class="table">
+                        
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Client</th>
+                                <th scope="col">Date Requested</th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Poin</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        {pointRequestData ?
+                            Object.values(pointRequestData.data)?.map(data => {
+                                return (
+                                    <>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">{data.Id}</th>
+                                                <th scope="row">{data.User.Toko}</th>
+                                                <th scope="row">{extractDate(data.CreatedAt)}</th>
+                                                <th scope="row">{data.Product.NameProduct} x {data.Product.Amount} pcs</th>
+                                                <th scope="row">@{data.Product.Poin}</th>
+                                                <th scope="row">{data.Status} {data.Status === "Accepted" ? extractDate(data.UpdatedAt) : "belum diproses"}</th>
+                                            </tr>
+                                        </tbody>
+                                    </>
+                                );
+                            }) :
+                            <Messaging color="#FD7014" width="15px" height="15px" />
+                        }
+                    </table>
+                    <br></br>
+                    Reward Request
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Client</th>
+                                <th scope="col">Date Requested</th>
+                                <th scope="col">Reward</th>
+                                <th scope="col">Poin</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        {rewardRequestData ?
+                            Object.values(rewardRequestData.data)?.map(data => {
+                                return (
+                                    <>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">{data.Id}</th>
+                                                <th scope="row">{data.User.Toko}</th>
+                                                <th scope="row">{extractDate(data.CreatedAt)}</th>
+                                                <th scope="row">{data.Reward.NameType} Rp {data.Reward.NominalReward}</th>
+                                                <th scope="row">{data.Reward.Poin}</th>
+                                                <th scope="row">{data.Status} ({data.Status === "Accepted" ? extractDate(data.UpdatedAt) : "belum diproses"})</th>
+                                            </tr>
+                                        </tbody>
+                                    </>
+                                );
+                            }) :
+                            <Messaging color="#FD7014" width="15px" height="15px" />
+                        }
+                    </table>
+                    {/* {historyAdmin ?
+                        Object.values(historyAdmin.data)?.map(item => (
                             <div className="row">
                                 <RectangleCard type={"history"} dataHistory={item} />
                             </div>
                         )) :
                         <Messaging color="#FD7014" width="15px" height="15px" />
-                    }
+                    } */}
                 </div>
             </div>
         </div>

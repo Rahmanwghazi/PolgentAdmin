@@ -17,10 +17,10 @@ export const AddProductModal = (props) => {
         })
     }
 
-    const mutation = useMutation(async state => {
+    const mutation = useMutation(state => {
         return axios.post(`/admin/addProduct`, state, {
             headers: header
-        }).then(onReRender())
+        }).then(() => onReRender())
     })
 
     const onSubmit = e => {

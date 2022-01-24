@@ -36,8 +36,8 @@ const Card = (props) => {
                                         <img src={deleteButton} className="deleteHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalDelete${props.data.id}`} />
                                         <img src={editButton} className="editHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalProduct${props.data.id}`} />
                                     </div>
-                                    <ConfirmDeleteModal data={props.data} name={props.data.nameProduct}type={"products"} />
-                                    <UpdateProductModal data={props.data} />
+                                    <ConfirmDeleteModal data={props.data} name={props.data.nameProduct}type={"products"} onReRender={props.onReRender}/>
+                                    <UpdateProductModal data={props.data} onReRender={props.onReRender}/>
                                 </>
                                 :
                                 <>
@@ -45,8 +45,8 @@ const Card = (props) => {
                                         <img src={deleteButton} className="deleteHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalDelete${props.data.id}`} />
                                         <img src={editButton} className="editHover" alt="illustration" width="50" data-bs-toggle="modal" data-bs-target={`#modalReward${props.data.id}`} />
                                     </div>
-                                    <ConfirmDeleteModal data={props.data} name={props.data.description} type={"rewards"} />
-                                    <UpdateRewardModal data={props.data} />
+                                    <ConfirmDeleteModal data={props.data} name={props.data.description} type={"rewards"} onReRender={props.onReRender}/>
+                                    <UpdateRewardModal data={props.data} onReRender={props.onReRender} />
                                 </>
                         }
                     </div>

@@ -4,7 +4,8 @@ import { useMutation } from "react-query";
 import { header } from "../../utils/headers";
 import './Modal.css'
 
-export const AddRewardModal = () => {
+export const AddRewardModal = (props) => {
+    const { onReRender } = props;
     const [state, setState] = useState("")
     const [image, setImage] = useState("");
 
@@ -18,9 +19,7 @@ export const AddRewardModal = () => {
     const mutation = useMutation(state => {
         return axios.post(`/admin/addRedem`, state, {
             headers: header
-        }).then(res => {
-            console.log(res.data)
-        })
+        }).then(() => onReRender())
     })
 
     const onSubmit = e => {

@@ -2,29 +2,23 @@ import axios from "axios"
 import { header } from "../../utils/headers"
 
 export const ConfirmDeleteModal = (props) => {
-
+    const { onReRender } = props;
     const onDelete = id => {
         if (props.type === "products") {
             axios.post(`/admin/DeleteProduct`, { id: props.data.id }, {
                 headers: header
             })
-                .then(res => {
-                    console.log("responnya = ", res.data)
-                })
+                .then(() => onReRender())
         } else if (props.type === "rewards") {
             axios.post(`/admin/deleteRedem`, { id: props.data.id }, {
                 headers: header
             })
-                .then(res => {
-                    console.log("responnya = ", res.data)
-                })
+                .then(() => onReRender())
         } else {
             axios.post(`/user/deleteUser`, { id: props.data.id }, {
                 headers: header
             })
-                .then(res => {
-                    console.log("responnya = ", res.data)
-                })
+                .then(() => onReRender())
         }
     }
 
