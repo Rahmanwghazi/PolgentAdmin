@@ -6,14 +6,16 @@ import { Messaging } from "react-cssfx-loading/lib"
 import { useGetPointRequests } from "../../hooks/useGetPointRequest";
 import { useGetRewardRequests } from "../../hooks/useGetRewardRequests";
 import { extractDate } from "../../utils/dateFormatter"
-import { useState } from "react"
+import { useRef, useState } from "react"
+import ReactToPrint from "react-to-print";
 
 const History = () => {
 
     const { data: pointRequestData } = useQuery("useGetPointRequests", useGetPointRequests)
     const { data: rewardRequestData } = useQuery("useGetRewardRequests", useGetRewardRequests)
     const [q, setQ] = useState("")
-    console.log("sdsd", rewardRequestData)
+    let componentRef = useRef();
+
 
     const isLogged = !!localStorage.getItem('token');
     if (!isLogged) {
@@ -44,43 +46,51 @@ const History = () => {
                     </div>
                     <div className="text-white mb-3">
                         <div className="card-body box-history">
-                        <div>
-                        <input className="form-field" type="text" placeholder="search data" value={q} onChange={(e) => setQ(e.target.value)}></input>
-                    </div>
-                    <table className="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Client</th>
-                                <th scope="col">Date Requested</th>
-                                <th scope="col">Product</th>
-                                <th scope="col">Poin</th>
-                                <th scope="col">Status</th>
-                            </tr>
-                        </thead>
-                        {pointRequestData ?
-                            Object.values(search(pointRequestData.data))?.map(data => {
-                                return (
-                                    <>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">{data.Id}</th>
-                                                <th scope="row">{data.User.Toko}</th>
-                                                <th scope="row">{extractDate(data.CreatedAt)}</th>
-                                                <th scope="row">{data.Product.NameProduct} x {data.Product.Amount} pcs</th>
-                                                <th scope="row">@{data.Product.Poin}</th>
-                                                <th scope="row">{data.Status} {data.Status === "Accepted" ? "by admin A " + extractDate(data.UpdatedAt) : "has not been processed"}</th>
-                                            </tr>
-                                        </tbody>
-                                    </>
-                                );
-                            }) :
-                            <Messaging color="#FD7014" width="15px" height="15px" />
-                        }
-                    </table>
+                            <div className="row">
+                                <div className="col-10">
+                                    <input className="form-field" type="text" placeholder="search data" value={q} onChange={(e) => setQ(e.target.value)}></input>
+                                </div>
+                                <div className="col-2">
+                                    <ReactToPrint
+                                        trigger={() => <button type="button" className="btn btn-warning">Print</button>}
+                                        content={() => componentRef}
+                                    />
+                                </div>
+                            </div>
+                            <table className="table table-hover" ref={(el) => (componentRef = el)}>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Client</th>
+                                        <th scope="col">Date Requested</th>
+                                        <th scope="col">Product</th>
+                                        <th scope="col">Poin</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                {pointRequestData ?
+                                    Object.values(search(pointRequestData.data))?.map(data => {
+                                        return (
+                                            <>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">{data.Id}</th>
+                                                        <th scope="row">{data.User.Toko}</th>
+                                                        <th scope="row">{extractDate(data.CreatedAt)}</th>
+                                                        <th scope="row">{data.Product.NameProduct} x {data.Product.Amount} pcs</th>
+                                                        <th scope="row">@{data.Product.Poin}</th>
+                                                        <th scope="row">{data.Status} {data.Status === "Accepted" ? "by admin A " + extractDate(data.UpdatedAt) : "has not been processed"}</th>
+                                                    </tr>
+                                                </tbody>
+                                            </>
+                                        );
+                                    }) :
+                                    <Messaging color="#FD7014" width="15px" height="15px" />
+                                }
+                            </table>
                         </div>
                     </div>
-                   
+
                     <br></br>
                     {/* Reward Request
                     <table class="table">

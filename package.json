@@ -19,6 +19,7 @@
     "react-query": "^3.34.7",
     "react-router-dom": "^6.2.1",
     "react-scripts": "^5.0.0",
+    "react-to-print": "^2.14.4",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
