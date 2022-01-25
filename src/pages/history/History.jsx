@@ -8,13 +8,16 @@ import { Messaging } from "react-cssfx-loading/lib"
 import { useGetPointRequests } from "../../hooks/useGetPointRequest";
 import { useGetRewardRequests } from "../../hooks/useGetRewardRequests";
 import { extractDate } from "../../utils/dateFormatter"
+import { useState } from "react"
+
 const History = () => {
+
 
     const { data: historyAdmin } = useQuery("useGetAdminHistories", useGetAdminHistories)
     const { data: pointRequestData } = useQuery("useGetPointRequests", useGetPointRequests)
     const { data: rewardRequestData } = useQuery("useGetRewardRequests", useGetRewardRequests)
-
-
+    const [q, setQ] = useState("")
+    console.log("sdsd", rewardRequestData)
 
     const isLogged = !!localStorage.getItem('token');
     if (!isLogged) {
@@ -22,6 +25,14 @@ const History = () => {
         return (
             <Navigate to="/" />
         )
+    }
+
+    function search(rows) {
+        return rows.filter((row) =>
+            row.User.Toko.toLowerCase().indexOf(q) > -1 ||
+            row.CreatedAt.toLowerCase().indexOf(q) > -1 ||
+            row.Status.toLowerCase().indexOf(q) > -1
+        );
     }
     return (
         <div className="container mt-5">
@@ -35,9 +46,12 @@ const History = () => {
                             <p>History</p>
                         </div>
                     </div>
-                    Point Request
-                    <table class="table">
-                        
+                    <div className="text-white mb-3">
+                        <div className="card-body box-history">
+                        <div>
+                        <input className="form-field" type="text" placeholder="search data" value={q} onChange={(e) => setQ(e.target.value)}></input>
+                    </div>
+                    <table className="table table-hover">
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
@@ -49,7 +63,7 @@ const History = () => {
                             </tr>
                         </thead>
                         {pointRequestData ?
-                            Object.values(pointRequestData.data)?.map(data => {
+                            Object.values(search(pointRequestData.data))?.map(data => {
                                 return (
                                     <>
                                         <tbody>
@@ -59,7 +73,7 @@ const History = () => {
                                                 <th scope="row">{extractDate(data.CreatedAt)}</th>
                                                 <th scope="row">{data.Product.NameProduct} x {data.Product.Amount} pcs</th>
                                                 <th scope="row">@{data.Product.Poin}</th>
-                                                <th scope="row">{data.Status} {data.Status === "Accepted" ? extractDate(data.UpdatedAt) : "belum diproses"}</th>
+                                                <th scope="row">{data.Status} {data.Status === "Accepted" ? "by admin A " + extractDate(data.UpdatedAt) : "has not been processed"}</th>
                                             </tr>
                                         </tbody>
                                     </>
@@ -68,8 +82,11 @@ const History = () => {
                             <Messaging color="#FD7014" width="15px" height="15px" />
                         }
                     </table>
+                        </div>
+                    </div>
+                   
                     <br></br>
-                    Reward Request
+                    {/* Reward Request
                     <table class="table">
                         <thead>
                             <tr>
@@ -100,7 +117,7 @@ const History = () => {
                             }) :
                             <Messaging color="#FD7014" width="15px" height="15px" />
                         }
-                    </table>
+                    </table> */}
                     {/* {historyAdmin ?
                         Object.values(historyAdmin.data)?.map(item => (
                             <div className="row">

@@ -7,6 +7,9 @@ import { useGetProducts } from "../../hooks/useGetProducts"
 import { useGetRewards } from "../../hooks/useGetRewards"
 import { useGetUsers } from "../../hooks/useGetUsers"
 import logoutButton from '../../assets/logout.png'
+import userImg from '../../assets/user.png'
+import rewardImg from '../../assets/reaward.png'
+import productImg from '../../assets/product.png'
 
 import './Dashboard.css'
 const Dashboard = () => {
@@ -58,28 +61,28 @@ const Dashboard = () => {
                                 Object.keys(dataUser.data).length
                                 :
                                 <Messaging color="#FD7014" width="15px" height="15px" />
-                            } title={"client registered"} />
+                            } title={"client registered"} img={<img title="client" src={userImg} alt="illustration" width="150" style={{"marginTop": "-100px", "opacity":"0.1"}} />} />
                         </div>
                         <div className="col-md-6">
                             <BoxCard data={dataReward ?
                                 Object.keys(dataReward.data).length
                                 :
                                 <Messaging color="#FD7014" width="15px" height="15px" />
-                            } title={"total reward"} />
+                            } title={"total reward"} img={<img title="rewardImg" src={rewardImg} alt="illustration" width="150" style={{"marginTop": "-100px", "opacity":"0.1"}}/>}/>
                         </div>
                         <div className="col-md-6">
                             <BoxCard data={dataProduct ?
                                 Object.keys(dataProduct.data).length
                                 :
                                 <Messaging color="#FD7014" width="15px" height="15px" />
-                            } title={"total product"} />
+                            } title={"total product"}img={<img title="productImg" src={productImg} alt="illustration" width="150" style={{"marginTop": "-100px", "opacity":"0.1"}} />} />
                         </div>
                         <div className="col-md-6">
                             <BoxCard data={dataProduct ?
                                 Object.keys(dataProduct.data).length
                                 :
                                 <Messaging color="#FD7014" width="15px" height="15px"/>
-                            } title={"total apa gitu"} />
+                            } title={"total apa gitu"} img={<img title="productImg" src={productImg} alt="illustration" width="150" style={{"marginTop": "-100px", "opacity":"0.1"}} />}/>
                         </div>
                     </div>
                 </div>

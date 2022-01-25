@@ -8,7 +8,6 @@
 }
 
 .box-card:hover {
-    background-color: #FF872E;
     transform: translateY(-10px);
     transition: 0.5s ease-out;
 }

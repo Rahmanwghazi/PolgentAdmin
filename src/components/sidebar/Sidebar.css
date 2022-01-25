@@ -25,10 +25,12 @@
 .sidenav a:hover {
     color: #000000;
     font-weight: bold;
+    font-size: 24px;
 }
 
 .active{
     font-weight: bold;
+    font-size: 25px;
 }
 
 .main {

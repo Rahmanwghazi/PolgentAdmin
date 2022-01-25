@@ -6,6 +6,7 @@ const BoxCard = (props) => {
             <div className="card-body box-card">
                 <h5 className="card-title text-center">{props.title}</h5>
                 <p className="card-text text-center">{props.data}</p>
+                {props.img}
             </div>
         </div>
     )
