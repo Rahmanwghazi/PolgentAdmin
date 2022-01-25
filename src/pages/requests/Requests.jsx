@@ -10,8 +10,8 @@ import { Navigate } from "react-router-dom";
 
 
 const Requests = () => {
-    const { data: pointRequestData } = useQuery("useGetPointRequests", useGetPointRequests)
-    const { data: rewardRequestData } = useQuery("useGetRewardRequests", useGetRewardRequests)
+    const { data: pointRequestData, isRefetching: isRefetchingPoint } = useQuery("useGetPointRequests", useGetPointRequests)
+    const { data: rewardRequestData, isRefetching: isRefetchingReward } = useQuery("useGetRewardRequests", useGetRewardRequests)
 
     const [toggleState, setToggleState] = useState(1);
 
@@ -57,23 +57,26 @@ const Requests = () => {
                     <div className="content-tabs">
                         <div
                             className={toggleState === 1 ? "content  active-content" : "content"}
-                        >
-                            {pointRequestData ?
+                        >{isRefetchingPoint ? <Messaging color="#FD7014" width="15px" height="15px" /> :
+                            (pointRequestData ?
                                 Object.values(pointRequestData.data)?.map(item => (
                                     <RectangleCard type={"point"} dataPoint={item} />
                                 )) :
                                 <Messaging color="#FD7014" width="15px" height="15px" />
+                            )
                             }
 
                         </div>
                         <div
                             className={toggleState === 2 ? "content  active-content" : "content"}
                         >
-                            {rewardRequestData ?
-                                Object.values(rewardRequestData.data)?.map(item => (
-                                    <RectangleCard type={"reward"} dataReward={item} />
-                                )) :
-                                <Messaging color="#FD7014" width="15px" height="15px" />
+                            {isRefetchingReward ? <Messaging color="#FD7014" width="15px" height="15px" /> :
+                                (rewardRequestData ?
+                                    Object.values(rewardRequestData.data)?.map(item => (
+                                        <RectangleCard type={"reward"} dataReward={item} />
+                                    )) :
+                                    <Messaging color="#FD7014" width="15px" height="15px" />
+                                )
                             }
                         </div>
                     </div>

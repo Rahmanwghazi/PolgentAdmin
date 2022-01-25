@@ -1,9 +1,7 @@
 import Sidebar from "../../components/sidebar/Sidebar"
 import './History.css'
 import { Navigate } from "react-router-dom"
-import { useGetAdminHistories } from "../../hooks/useGetAdminHistories"
 import { useQuery } from "react-query"
-import RectangleCard from "../../components/rectangle-card/RectangleCard"
 import { Messaging } from "react-cssfx-loading/lib"
 import { useGetPointRequests } from "../../hooks/useGetPointRequest";
 import { useGetRewardRequests } from "../../hooks/useGetRewardRequests";
@@ -12,8 +10,6 @@ import { useState } from "react"
 
 const History = () => {
 
-
-    const { data: historyAdmin } = useQuery("useGetAdminHistories", useGetAdminHistories)
     const { data: pointRequestData } = useQuery("useGetPointRequests", useGetPointRequests)
     const { data: rewardRequestData } = useQuery("useGetRewardRequests", useGetRewardRequests)
     const [q, setQ] = useState("")

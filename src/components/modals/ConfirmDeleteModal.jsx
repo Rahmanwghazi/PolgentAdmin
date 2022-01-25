@@ -27,6 +27,7 @@ export const ConfirmDeleteModal = (props) => {
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-body">
+                        <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                         <p className="label-modal mb-2" style={{ fontWeight: "bold", fontSize: 30 }}>Confirmation Delete</p>
                         <div className="form-group">
                             <p className="label-modal" style={{ fontWeight: "normal", fontSize: 20 }}>Delete {props.name} ?</p>

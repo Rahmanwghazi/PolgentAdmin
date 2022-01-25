@@ -33,8 +33,10 @@ const Login = () => {
             setSuccess(true);
         } catch (err) {
             console.log(err)
-            if (!err?.res) {
-                setErrMsg('Wrong Username or Password!');
+            if (err.response.status === 400){
+                setErrMsg('wrong username or password')
+            }else{
+                setErrMsg('an error has occurred!')
             }
         }
     }

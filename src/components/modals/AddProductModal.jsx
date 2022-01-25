@@ -44,6 +44,7 @@ export const AddProductModal = (props) => {
             poin: 0,
         });
     }
+   
 
     return (
         <div className="modal fade mt-5" id="modalFormName" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -51,6 +52,7 @@ export const AddProductModal = (props) => {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-body">
+                        <button type="button" className="btn-close" data-bs-dismiss="modal"></button> 
                             <h5 className="label-modal edit">Add Product</h5>
                             <div onSubmit={onSubmit}>
                                 <div className="form-group">

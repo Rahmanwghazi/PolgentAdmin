@@ -9,7 +9,7 @@ import { Messaging } from "react-cssfx-loading/lib"
 import { Navigate } from "react-router-dom"
 
 const Products = () => {
-    const { data, refetch } = useQuery("useGetProducts", useGetProducts)
+    const { data, refetch, isRefetching } = useQuery("useGetProducts", useGetProducts)
     const handleReRender = () => {
         refetch()
     };
@@ -33,21 +33,25 @@ const Products = () => {
                     <div className="title-page row">
                         <div className="col-2">
                             <p>Products</p>
+                           
                         </div>
                         <div className="col-2">
                             <img src={addButton} alt="illustration" width="20" style={{ marginLeft: 35 }} data-bs-toggle="modal" data-bs-target="#modalFormName" />
                             <AddProductModal onReRender={handleReRender} />
                         </div>
                     </div>
+                    
                     <div className="row">
-                        {data ?
+                    {isRefetching ? <Messaging color="#FD7014" width="15px" height="15px"/> :
+                        (data ?
                             Object.values(data.data).map(item => (
                                 <div className="col-md-4">
                                     <Card type={"products"} data={item} onReRender={handleReRender} />
                                 </div>
                             )) :
                             <Messaging color="#FD7014" width="15px" height="15px" />
-                        }
+                        )
+                    }
                     </div>
                 </div>
             </div>

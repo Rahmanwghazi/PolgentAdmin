@@ -58,6 +58,7 @@ export const UpdateRewardModal = (props) => {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-body">
+                        <button type="button" className="btn-close" data-bs-dismiss="modal"></button> 
                             <h5 className="label-modal edit">Edit Reward</h5>
                             <div onSubmit={onSubmit}>
                                 <div className="form-group">

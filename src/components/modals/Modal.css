@@ -117,6 +117,11 @@
     background-color: #000000
 }
 
+.btn-close{
+    height: 2px;
+    width: 2px;
+}
+
 @media(max-width: 380px) {
     .modal-wrapper {
         margin: 30px 20px;

@@ -24,6 +24,7 @@ export const UpdateRewardRequestModal = (props) => {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-body">
+                        <button type="button" className="btn-close" data-bs-dismiss="modal"></button> 
                             <h5 className="label-modal edit">Update Status Reward Request</h5>
                             <div onSubmit={onSubmit}>
                                 <div className="form-group">

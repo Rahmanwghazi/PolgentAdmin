@@ -1,4 +1,5 @@
 import axios from "axios";
+import emailjs from '@emailjs/browser';
 import { useState } from "react";
 import { useMutation } from "react-query";
 import { header } from "../../utils/headers";
@@ -27,6 +28,13 @@ export const AddUserModal = (props) => {
     })
 
     const onSubmit = e => {
+        emailjs.send('service_polgent', 'template_8fymx6v', state, 'user_L2whRSWob7rfxYNCIqqdP')
+            .then((response) => {
+                console.log('SUCCESS!', response.status, response.text);
+            }, (err) => {
+                console.log('FAILED...', err);
+            });
+
         mutation.mutate(state)
         setState({
             ...state,
@@ -43,6 +51,7 @@ export const AddUserModal = (props) => {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-body">
+                            <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                             <h5 className="label-modal edit">Add User</h5>
                             <div onSubmit={onSubmit}>
                                 <div className="form-group">

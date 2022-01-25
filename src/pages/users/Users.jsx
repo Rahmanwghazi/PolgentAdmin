@@ -10,7 +10,7 @@ import { Navigate } from "react-router-dom"
 
 const Users = () => {
 
-    const { data, refetch } = useQuery("useGetUsers", useGetUsers)
+    const { data, refetch, isRefetching } = useQuery("useGetUsers", useGetUsers)
     const isLogged = !!localStorage.getItem('token');
 
     const handleReRender = () => {
@@ -39,14 +39,15 @@ const Users = () => {
                             <AddUserModal onReRender={handleReRender} />
                         </div>
                     </div>
-                    {data ?
-                        Object.values(data.data)?.map(item => (
-                            <div className="row">
-                                <RectangleCard type={"user"} data={item} />
-                            </div>
-                        )) :
-                        <Messaging color="#FD7014" width="15px" height="15px" />
-                    }
+                    {isRefetching ? <Messaging color="#FD7014" width="15px" height="15px" /> :
+                        (data ?
+                            Object.values(data.data)?.map(item => (
+                                <div className="row">
+                                    <RectangleCard type={"user"} data={item} />
+                                </div>
+                            )) :
+                            <Messaging color="#FD7014" width="15px" height="15px" />
+                        )}
                 </div>
             </div>
         </div>

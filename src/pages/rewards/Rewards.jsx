@@ -8,7 +8,7 @@ import { useQuery } from "react-query"
 import { Messaging } from "react-cssfx-loading/lib"
 import { Navigate } from "react-router-dom"
 const Rewards = () => {
-    const { data, refetch } = useQuery("useGetRewards", useGetRewards)
+    const { data, refetch, isRefetching } = useQuery("useGetRewards", useGetRewards)
 
     const handleReRender = () => {
         refetch()
@@ -22,7 +22,7 @@ const Rewards = () => {
         )
     }
     return (
-        
+
         <div className="container mt-5">
             <div className="row">
                 <div className="col-md-3 d-none d-xxl-block">
@@ -39,14 +39,15 @@ const Rewards = () => {
                         </div>
                     </div>
                     <div className="row">
-                        {data ?
-                            Object.values(data.data)?.map(item => (
-                                <div className="col-md-4">
-                                    <Card type={"rewards"} data={item} onReRender={handleReRender}/>
-                                </div>
-                            )) :
-                            <Messaging color="#FD7014" width="15px" height="15px" />
-                        }
+                        {isRefetching ? <Messaging color="#FD7014" width="15px" height="15px" /> :
+                            (data ?
+                                Object.values(data.data)?.map(item => (
+                                    <div className="col-md-4">
+                                        <Card type={"rewards"} data={item} onReRender={handleReRender} />
+                                    </div>
+                                )) :
+                                <Messaging color="#FD7014" width="15px" height="15px" />
+                            )}
                     </div>
                 </div>
             </div>
