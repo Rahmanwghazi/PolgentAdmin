@@ -1,0 +1,30 @@
+.small-sidenav a {
+    padding: 5px 8px 5px;
+    text-decoration: none;
+    font-size: 22px;
+    color: #000000;
+    display: block;
+}
+.navbar-toggler-icon{
+    background-color: #FF872E;
+    border-radius: 20%;
+    padding: 10px;
+}
+
+.small-sidenav a:hover {
+    color: #000000;
+    font-weight: bold;
+}
+
+.active {
+    font-weight: bold;
+}
+
+.main {
+    font-size: 28px;
+    padding: 0px 10px;
+}
+
+.nav-items {
+    color: #FF872E !important;
+}

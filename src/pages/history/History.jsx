@@ -4,15 +4,14 @@ import { Navigate } from "react-router-dom"
 import { useQuery } from "react-query"
 import { Messaging } from "react-cssfx-loading/lib"
 import { useGetPointRequests } from "../../hooks/useGetPointRequest";
-import { useGetRewardRequests } from "../../hooks/useGetRewardRequests";
 import { extractDate } from "../../utils/dateFormatter"
 import { useRef, useState } from "react"
 import ReactToPrint from "react-to-print";
+import Navbar from "../../components/sidebar/Navbar"
 
 const History = () => {
 
     const { data: pointRequestData } = useQuery("useGetPointRequests", useGetPointRequests)
-    const { data: rewardRequestData } = useQuery("useGetRewardRequests", useGetRewardRequests)
     const [q, setQ] = useState("")
     let componentRef = useRef();
 
@@ -38,6 +37,9 @@ const History = () => {
                 <div className="col-md-3 d-none d-xxl-block">
                     <Sidebar />
                 </div>
+                <div className="col-md-3 d-xxl-none">
+                    <Navbar />
+                </div>
                 <div className="col-md-9">
                     <div className="title-page row">
                         <div className="col-2">
@@ -52,7 +54,7 @@ const History = () => {
                                 </div>
                                 <div className="col-2">
                                     <ReactToPrint
-                                        trigger={() => <button type="button" className="btn btn-warning">Print</button>}
+                                        trigger={() => <button type="button" style={{"width": "120px"}} className="btn btn-warning">Print</button>}
                                         content={() => componentRef}
                                     />
                                 </div>
@@ -92,46 +94,6 @@ const History = () => {
                     </div>
 
                     <br></br>
-                    {/* Reward Request
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Client</th>
-                                <th scope="col">Date Requested</th>
-                                <th scope="col">Reward</th>
-                                <th scope="col">Poin</th>
-                                <th scope="col">Status</th>
-                            </tr>
-                        </thead>
-                        {rewardRequestData ?
-                            Object.values(rewardRequestData.data)?.map(data => {
-                                return (
-                                    <>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">{data.Id}</th>
-                                                <th scope="row">{data.User.Toko}</th>
-                                                <th scope="row">{extractDate(data.CreatedAt)}</th>
-                                                <th scope="row">{data.Reward.NameType} Rp {data.Reward.NominalReward}</th>
-                                                <th scope="row">{data.Reward.Poin}</th>
-                                                <th scope="row">{data.Status} ({data.Status === "Accepted" ? extractDate(data.UpdatedAt) : "belum diproses"})</th>
-                                            </tr>
-                                        </tbody>
-                                    </>
-                                );
-                            }) :
-                            <Messaging color="#FD7014" width="15px" height="15px" />
-                        }
-                    </table> */}
-                    {/* {historyAdmin ?
-                        Object.values(historyAdmin.data)?.map(item => (
-                            <div className="row">
-                                <RectangleCard type={"history"} dataHistory={item} />
-                            </div>
-                        )) :
-                        <Messaging color="#FD7014" width="15px" height="15px" />
-                    } */}
                 </div>
             </div>
         </div>

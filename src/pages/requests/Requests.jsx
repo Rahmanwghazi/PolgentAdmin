@@ -7,6 +7,7 @@ import { Messaging } from "react-cssfx-loading/lib";
 import { useGetPointRequests } from "../../hooks/useGetPointRequest";
 import { useGetRewardRequests } from "../../hooks/useGetRewardRequests";
 import { Navigate } from "react-router-dom";
+import Navbar from "../../components/sidebar/Navbar";
 
 
 const Requests = () => {
@@ -32,6 +33,9 @@ const Requests = () => {
             <div className="row">
                 <div className="col-md-3 d-none d-xxl-block">
                     <Sidebar />
+                </div>
+                <div className="col-md-3 d-xxl-none">
+                    <Navbar />
                 </div>
                 <div className="col-md-9">
                     <div className="title-page row">

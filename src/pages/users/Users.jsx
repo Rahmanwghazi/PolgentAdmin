@@ -7,6 +7,7 @@ import { useGetUsers } from "../../hooks/useGetUsers"
 import { useQuery } from "react-query"
 import { Messaging } from "react-cssfx-loading/lib"
 import { Navigate } from "react-router-dom"
+import Navbar from "../../components/sidebar/Navbar"
 
 const Users = () => {
 
@@ -28,6 +29,9 @@ const Users = () => {
             <div className="row">
                 <div className="col-md-3 d-none d-xxl-block">
                     <Sidebar />
+                </div>
+                <div className="col-md-3 d-xxl-none">
+                    <Navbar />
                 </div>
                 <div className="col-md-9">
                     <div className="title-page row">

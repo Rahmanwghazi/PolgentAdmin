@@ -7,6 +7,7 @@ import { useGetRewards } from "../../hooks/useGetRewards"
 import { useQuery } from "react-query"
 import { Messaging } from "react-cssfx-loading/lib"
 import { Navigate } from "react-router-dom"
+import Navbar from "../../components/sidebar/Navbar"
 const Rewards = () => {
     const { data, refetch, isRefetching } = useQuery("useGetRewards", useGetRewards)
 
@@ -27,6 +28,9 @@ const Rewards = () => {
             <div className="row">
                 <div className="col-md-3 d-none d-xxl-block">
                     <Sidebar />
+                </div>
+                <div className="col-md-3 d-xxl-none">
+                    <Navbar />
                 </div>
                 <div className="col-md-9">
                     <div className="title-page row">
