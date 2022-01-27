@@ -1,0 +1,59 @@
+.bloc-tabs {
+    display: flex;
+}
+
+.tabs {
+    padding: 15px;
+    text-align: center;
+    width: 50%; 
+    cursor: pointer;
+    box-sizing: content-box;
+    position: relative;
+    outline: none;
+    border-radius: 15px 15px 0 0;
+    box-shadow: 1px 1px 5px #cbced1, -3px -13px 20px #fff;
+}
+
+.active-tabs {
+    box-shadow: 5px 5px 20px #cbced1, -13px -13px 20px #fff;
+    background-color: #ececec;
+    background: #F5F5F5;
+    border-bottom: 1px solid transparent;
+}
+
+button {
+    border: none;
+}
+
+.content-tabs {
+    flex-grow: 1;
+}
+
+.content {
+    background: #F5F5F5;
+    padding-top: 15px;
+    width: 100%;
+    height: 100%;
+    display: none;
+    border-radius: 0 0 15px 15px;
+}
+
+.content h2 {
+    padding: 0px 0 5px 0px;
+}
+
+.content hr {
+    width: 100px;
+    height: 2px;
+    background: #222;
+    margin-bottom: 5px;
+}
+
+.content p {
+    width: 100%;
+    height: 100%;
+}
+
+.active-content {
+    display: block;
+}

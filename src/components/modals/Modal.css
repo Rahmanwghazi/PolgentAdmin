@@ -1,0 +1,130 @@
+.modal-content {
+    border-radius: 15px;
+    background-color: #f5f5f5;
+}
+
+.form-group {
+    color: black;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.logo-modal {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.label-modal {
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+}
+
+.text-modal {
+    color: black;
+    font-weight: 200;
+}
+
+.form-modal {
+    margin-top: 70px;
+}
+
+.btn-signin {
+    background-color: #FD7014;
+    color: black;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    width: 100%;
+    height: 50px;
+    margin-top: 50px;
+    margin-bottom: 35PX;
+}
+
+.btn-e {
+    background-color: #FF872E;
+    color: black;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    width: 100%;
+    height: 50px;
+    margin-top: 40px !important;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.custom-file-input::before {
+    content: 'Change image';
+    display: inline-block;
+    background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+}
+
+.custom-file-input:hover::before {
+    border-color: black;
+}
+
+.custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+.detail-trans {
+    cursor: pointer;
+    color: #FF872E;
+}
+
+.modal-wrapper {
+    max-width: 450px;
+    min-height: 500px;
+    margin: auto;
+    background-color: #ecf0f3;
+    border-radius: 15px;
+}
+
+.modal-wrapper .form-field {
+    padding-left: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: inset 4px 4px 4px #cbced1, inset -8px -8px 8px #fff
+}
+
+.modal-wrapper .btn {
+    box-shadow: none;
+    width: 100%;
+    height: 40px;
+    background-color: #FF872E;
+    color: #fff;
+    border-radius: 25px;
+    box-shadow: 3px 3px 3px #b1b1b1, -3px -3px 3px #fff;
+    letter-spacing: 1.3px
+}
+
+.modal-wrapper .btn:hover {
+    background-color: #000000
+}
+
+.btn-close{
+    height: 2px;
+    width: 2px;
+}
+
+@media(max-width: 380px) {
+    .modal-wrapper {
+        margin: 30px 20px;
+        padding: 40px 15px 15px 15px
+    }
+}

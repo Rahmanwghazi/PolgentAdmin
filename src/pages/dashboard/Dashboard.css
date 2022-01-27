@@ -1,0 +1,15 @@
+.title-page{
+    color: #000000;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.greetings{
+    margin-top: 20px;
+    font-size: 15px;
+    text-align: right;
+}
+
+.btn-logout{
+    cursor: pointer;
+}

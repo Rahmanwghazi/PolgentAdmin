@@ -1,0 +1,50 @@
+.box-card {
+    background-color: white;
+    height: 330px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 20px #cbced1, -13px -13px 20px #fff;
+    background-color: #f5f5f5;
+    transition: 0.4s ease-out;
+}
+
+.box-card:hover {
+    transform: translateY(-10px);
+    transition: 0.5s ease-out;
+}
+
+.card-title {
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.card-text {
+    color: black;
+    font-size: 100px;
+    font-weight: bolder;
+    margin-top: 50px;
+}
+
+
+.containerdb {
+    position: absolute;
+    height: 300px;
+    width: 600px;
+    top: 60px;
+    left: calc(50% - 300px);
+    display: flex;
+}
+
+.carddb {
+    display: flex;
+    height: 280px;
+    width: 200px;
+    background-color: #17141d;
+    border-radius: 10px;
+    box-shadow: -1rem 0 3rem #000;
+    /*   margin-left: -50px; */
+    transition: 0.4s ease-out;
+    position: relative;
+    left: 0px;
+}
+
